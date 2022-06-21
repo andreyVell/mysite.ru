@@ -1,0 +1,29 @@
+<?php
+                foreach ($rows as $row) {
+                    ?>
+                        <tr class="table_cell">
+                            <td><?php echo $row['id'];?></td>
+                            <td><?php echo $row['last_name'];?></td>
+                            <td><?php echo $row['first_name'];?></td>
+                            <td><?php echo $row['patronymic'];?></td>
+                            <td><?php if ($row['department'] =='' || $row['location']=='' || $row['number']=='') echo '---';
+                                        else echo $row['department']." ".$row['location'].", ст. ".$row['number'];?></td>                                
+                            <td><?php echo $row['phone_number'];?></td>
+                            <td><?php echo $row['email_adress'];?></td>
+                        </tr>
+                <?php   }?>
+
+
+
+SELECT
+	    booking_list.id,
+        workplaces.department,
+        workplaces.location,	
+        workplaces.number,
+        booking_list.start_time,
+        booking_list.end_time
+    FROM 
+	    `booking_list`
+        LEFT JOIN `workplaces` ON workplaces.id = booking_list.workplaсe_id
+        WHERE booking_list.staff_id = (SELECT staff.id FROM staff WHERE staff.login = '$login')
+    ORDER BY booking_list.id

@@ -1,0 +1,101 @@
+.popup { /*Расположение окна*/
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    visibility: hidden;
+    overflow-y: auto;
+    overflow-x: hidden;
+    transition: all 0.3s ease 0s;
+    color: white;
+}
+
+.popup.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.popup_body { /*настройка фона и расположения*/
+    min-height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 1% 1% 1% 23%;
+}
+.popup_content { /* настройка самой формы окна*/
+    background-color: #E9ECEE;
+    border-radius: 15px;
+    min-width: 400px;
+    min-height: 200px;
+    padding: 30px;
+    padding-bottom: 45px;
+    position: relative;
+    text-align: center;
+    padding-left: 15px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 100;
+    float: left;
+    color: black;
+    font-size: 22px;
+    text-align: left;
+}
+
+.form-control {
+    float: right;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    
+    text-align: center;
+    padding-left: 15px;
+}
+.edit_hint {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 100;
+    float: left;
+    color: black;
+    font-size: 22px;
+    text-align: left;
+}
+
+
+.edit_avatar {
+    margin-left: 33%;
+    margin-top: -35px;
+    float: center;
+    max-height: 120px;
+    max-width: 120px;
+    border-radius: 100%;
+    border: 3px solid black;
+    }
+.uploadImage {
+    margin-left: 23%;
+}
+
+.btn-save {
+    position: absolute;    
+    left: 25%;  
+    bottom: 10px;  
+    text-align: center;  
+    width: 50%;
+    border: 0;
+    border-radius: 15px;
+    color: white;
+    background-color: #485973;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 100;
+    font-size: 20px;
+    line-height: 35px;
+}
+
+.btn-save:hover {
+    background-color: #323e50;
+}
+
+select {
+    min-width: 183px;
+    min-height: 23px;
+    text-align: center;
+}

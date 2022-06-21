@@ -1,0 +1,107 @@
+body {
+    background-color: #E9ECEE;
+}
+body.lock {
+  overflow: hidden;
+}
+.vertical-menu {
+    width: auto;
+  }
+  
+.vertical-menu a {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    color: white; /* текст */
+    display: block; /* Чтобы ссылки отображались друг под другом */
+    padding-left: 40px;
+    padding-top: 20px;
+    padding-right: 15px;
+    padding-bottom: 15px; /* Отступы */
+    text-decoration: none; /* Убираем у ссылок подчеркивание */
+  }
+  
+  .vertical-menu a:hover {
+    color: black;
+    background-color: #ccc; /* Темно-серый фон при наведении курсора */
+  }
+  
+.vertical-menu a.active {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    color: #FF4336;
+  }
+
+.menu_bg {
+    position: absolute;
+    left: 0;
+    top: 0;
+    border-radius: 15px;
+    margin-left: 9%;
+    margin-top: 45px;
+    margin-bottom: 45px;
+    width: 20%;
+    height: 87%;
+    background:#293240;
+}
+
+.main_part {
+    position: absolute;
+    left: 0;
+    top: 0;
+    border-radius: 15px;
+    margin-left: 31%;
+    margin-right: 9%;
+    margin-top: 45px;
+    margin-bottom: 45px;
+    width: 60%;
+    height: 87%;
+    background:white;
+}
+
+.front_name{
+    text-align: center;
+    vertical-align: middle;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 44px;
+    color: white;
+}
+
+.front_avatar {
+    vertical-align: middle;
+    margin-left: 15px;
+    margin-top: -15px;
+    float: left;
+    width: 80px;
+    height: 80px;
+    border-radius: 100%;
+}
+
+.exit_button {
+  vertical-align: bottom;
+  
+}
+
+.button_exit {
+    position: absolute;
+    bottom: 5%;
+    left: 12%;    
+    text-align: center;  
+    width: 76%;
+    border: 0;
+    border-radius: 15px;
+    color: white;
+    background-color: #FF4336;
+    font-style: normal;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 26px;
+    line-height: 32px;
+}
+
+.button_exit:hover {
+    background:#a30b00;
+}
