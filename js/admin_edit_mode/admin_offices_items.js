@@ -104,14 +104,14 @@ function displayEditForm(id)
     var curInfo;     
     $.ajax({
         type: "POST",
-        url: '/../../php/admin_edit_mode/admin_get_placeholderInfo.php',
+        url: '/../../php/admin_edit_mode/admin_get_offices_placeholderInfo.php',
         data: {'id':id},
         success: function (result) {            
             curInfo = JSON.parse(result);
             var curId =curInfo[0];
             var curFloor=curInfo[1];
             var curNumber=curInfo[2];            
-            //подогнать значения placeholdera под текущий ID7
+            //подогнать значения placeholdera под текущий ID
             document.getElementById('current_office_id_for_edit').setAttribute('name', curId);
             document.getElementById('floor_edit').placeholder=curFloor;
             document.getElementById('number_edit').placeholder=curNumber;

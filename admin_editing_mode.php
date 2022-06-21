@@ -97,9 +97,8 @@
                                 </div>
                             </div>
                         </div>  
-                        <script src="js/admin_edit_mode/admin_save_office.js"></script>
-                    </div>
-                    
+                        <script src="js/admin_edit_mode/admin_save_edited_office.js"></script>
+                    </div>                    
                 </div>
                 <div class="tab-2">
                     <label for="tab2-2">Рабочие места</label>
@@ -120,13 +119,45 @@
                         </div>
                         <script src="js/admin_edit_mode/admin_workplaces_items.js"></script>
                         <script type="text/javascript">getWorkplaceItems();</script>
-                        <a href="#popupWorkplaceAdd" class="">
-                            <form class="form_add_workplace" method="post" action="#popupWorkplaceAdd">
-                                <button class="button_add_office btn-add">Добавить</button>
+                        <a href="#popupWorkplaceAdd" class="popup-link">
+                            <form class="form_add_workplace popup-link" method="post" action="#popupWorkplaceAdd">
+                                <button class="button_add_workplace btn-add popup-link" id="button_add_workplace">Добавить</button>
                             </form> 
                         </a>
                         <!--add new -->
+                        <div id="popupWorkplaceAdd" class="popup">
+                            <div class="popup_body">
+                                <div class="popup_content"> 
+                                    <div class="popup_text"> 
+                                        <form class="add_new_form" method="post" enctype="multipart/form-data">  
+                                            <p><label class="edit_hint">Расположение:</label><select class="form-control" name="location" id="location"><option disabled>Выберите офис</option></select></p><br>                                                                                     
+                                            <p><label class="edit_hint">Спецификация:</label><input type="text" class="form-control" name="specifications" id="specifications" ></p><br>                                   
+                                            <p><label class="edit_hint">Номер стола:</label><input type="text" class="form-control" name="wp_number" id="wp_number" ></p><br>                                   
+                                            <button class="btn-save" id="btn_add_new_workplace">Сохранить</button>                                                                                 
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>  
+                        <script src="js/admin_edit_mode/admin_add_new_workplace.js"></script>
+                        <script src="js/admin_edit_mode/admin_display_form_add_new_workplace.js"></script>
                         <!-- edit one -->
+                        <div id="popupWorkPlaceEdit" class="popup">
+                            <div class="popup_body">
+                                <div class="popup_content"> 
+                                    <div class="popup_text"> 
+                                        <form class="edit_form" method="post" enctype="multipart/form-data">    
+                                            <div id="current_workplace_id_for_edit" name='gg'></div>                                           
+                                            <p><label class="edit_hint">Расположение:</label><select class="form-control" name="location_edit" id="location_edit"><option disabled>Выберите офис</option></select></p><br>                                                                                     
+                                            <p><label class="edit_hint">Спецификация:</label><input type="text" class="form-control" name="specifications_edit" id="specifications_edit" ></p><br>                                   
+                                            <p><label class="edit_hint">Номер стола:</label><input type="text" class="form-control" name="wp_number_edit" id="wp_number_edit" ></p><br>                                   
+                                            <button class="btn-save" id="btn_edit_workplace">Сохранить</button>                                                                                 
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>  
+                        <script src="js/admin_edit_mode/admin_save_edited_workplace.js"></script>
                     </div>
                 </div>                
             </div>        

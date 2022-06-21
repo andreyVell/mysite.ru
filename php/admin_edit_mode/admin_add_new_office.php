@@ -8,6 +8,13 @@
     
     try 
     {           
+        //проверка есть ли уже на данном этаже офисс таким же номером
+        $sqlResult = $mysql->query("
+        SELECT * FROM `offices` WHERE offices.floor='$floor' AND offices.office_number='$number' ");  
+        $rows = mysqli_fetch_all($sqlResult, MYSQLI_ASSOC);
+        if (count($rows)>0)
+            die(json_encode("На этом этаже уже есть офис с таким номером!", JSON_UNESCAPED_UNICODE));
+
         $sqlResult = $mysql->query("
         INSERT INTO `offices` (floor, office_number) VALUES ('$floor', '$number')");  
         $mysql->close();
