@@ -26,7 +26,7 @@ function saveInfo()
         newAvatarData.append("edit_avatar", document.getElementById("edit_avatar").files[0],document.getElementById("edit_avatar").files[0].name);     
         $.ajax({
             type: "POST",
-            url: '/../php/staff_list/edit_avatar_employee.php',
+            url: '/../../php/staff_list/edit_avatar_employee.php',
             data: newAvatarData,
             async: false,
             cache: false,
@@ -41,7 +41,7 @@ function saveInfo()
     //все остальное
     $.ajax({
         type: "POST",
-        url: '/../php/staff_list/edit_employee.php',
+        url: '/../../php/staff_list/edit_employee.php',
         data: {
             'id':cur_edit_id,
             'role':role,

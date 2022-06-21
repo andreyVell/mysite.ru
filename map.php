@@ -44,7 +44,7 @@
                     <tbody id="worplaces_list"></tbody>         
                 </table>
             </div>      
-            <script src="js/worplaces_items.js"></script>
+            <script src="js/admin_edit_mode/worplaces_items.js"></script>
             <script type="text/javascript">getItems();</script>
             <?php
                 require "php/database/role_identification.php";

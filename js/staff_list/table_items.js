@@ -2,7 +2,7 @@ function getItems()
 {
     var staff_list;
     $.ajax({
-        url:'/../php/staff_list/get_table.php',
+        url:'/../../php/staff_list/get_table.php',
         async: false,
         success: function(data) {
             staff_list = JSON.parse(data);
@@ -11,7 +11,7 @@ function getItems()
     
     var curr_role;
     $.ajax({
-        url:'/../php/staff_list/get_currRole.php',
+        url:'/../../php/staff_list/get_currRole.php',
         async: false,
         success: function(data) {
             curr_role = JSON.parse(data);
@@ -127,7 +127,7 @@ function deleteItem(id)
     {        
         var currentID;
         $.ajax({
-            url:'/../php/staff_list/get_currentID.php',
+            url:'/../../php/staff_list/get_currentID.php',
             async: false,
             success: function(data) {
                 currentID = JSON.parse(data);
@@ -136,7 +136,7 @@ function deleteItem(id)
         //удаляем DELETE PHP        
         $.ajax({
             type: "POST",
-            url: '/../php/staff_list/delete_employee.php',
+            url: '/../../php/staff_list/delete_employee.php',
             data: {'id':id},
             success: function (result) {
                 //релоад таблицу  
@@ -159,7 +159,7 @@ function displayEditForm(id)
     var curInfo;     
     $.ajax({
         type: "POST",
-        url: '/../php/staff_list/get_currentInfoViaID.php',
+        url: '/../../php/staff_list/get_currentInfoViaID.php',
         data: {'id':id},
         success: function (result) {            
             curInfo = JSON.parse(result);

@@ -60,8 +60,8 @@
                                 <tbody id="office_list"></tbody>                             
                             </table>
                         </div>
-                        <script src="js/admin_offices_items.js"></script>
-                        <script type="text/javascript">getItems();</script>                        
+                        <script src="js/admin_edit_mode/admin_offices_items.js"></script>
+                        <script type="text/javascript">getOfficeItems();</script>                        
                         <a href="#popupOfficeAdd" class="popup-link">
                             <form class="form_add_office popup-link" method="post" action="#popupOfficeAdd">
                                 <button class="button_add_office btn-add popup-link" type="submit">Добавить</button>
@@ -81,7 +81,7 @@
                                 </div>
                             </div>
                         </div>  
-                        <script src="js/admin_add_new_office.js"></script>
+                        <script src="js/admin_edit_mode/admin_add_new_office.js"></script>
                         <!-- edit one -->
                         <div id="popupOfficeEdit" class="popup">
                             <div class="popup_body">
@@ -97,7 +97,7 @@
                                 </div>
                             </div>
                         </div>  
-                        <script src="js/admin_save_office.js"></script>
+                        <script src="js/admin_edit_mode/admin_save_office.js"></script>
                     </div>
                     
                 </div>
@@ -111,19 +111,22 @@
                                     <td class="btn-column"></td>
                                     <td class="btn-column"></td>
                                     <td >№</td>
-                                    <td >Номер офиса</td>
+                                    <td >Расположение</td>
                                     <td >Спецификация</td>
                                     <td >Номер стола</td>
                                 </tr>   
-                                <tbody id="workplaces"></tbody>                          
+                                <tbody id="workplaces_list"></tbody>                          
                             </table>
                         </div>
-                        
+                        <script src="js/admin_edit_mode/admin_workplaces_items.js"></script>
+                        <script type="text/javascript">getWorkplaceItems();</script>
                         <a href="#popupWorkplaceAdd" class="">
                             <form class="form_add_workplace" method="post" action="#popupWorkplaceAdd">
                                 <button class="button_add_office btn-add">Добавить</button>
                             </form> 
                         </a>
+                        <!--add new -->
+                        <!-- edit one -->
                     </div>
                 </div>                
             </div>        

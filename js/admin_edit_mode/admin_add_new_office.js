@@ -20,7 +20,7 @@ function addInfo()
     newData.append("number", number);
     $.ajax({
         type: "POST",
-        url: '/../php/admin_edit_mode/admin_add_new_office.php',
+        url: '/../../php/admin_edit_mode/admin_add_new_office.php',
         data: newData,        
         async: false,
         cache: false,

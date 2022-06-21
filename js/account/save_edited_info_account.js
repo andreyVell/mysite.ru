@@ -29,7 +29,7 @@ function saveInfo()
     newAvatarData.append("phone_number", phone_number); 
     $.ajax({
         type: "POST",
-        url: '/../php/account/edit_info.php',
+        url: '/../../php/account/edit_info.php',
         data: newAvatarData,        
         async: false,
         cache: false,

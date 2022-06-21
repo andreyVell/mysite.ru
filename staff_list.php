@@ -56,7 +56,7 @@
                     <tbody id="staff_list"></tbody>         
                 </table>
             </div>      
-            <script src="js/table_items.js"></script>
+            <script src="js/staff_list/table_items.js"></script>
             <script type="text/javascript">getItems();</script>
             <?php
             require "php/database/role_identification.php";
@@ -75,7 +75,7 @@
                                         <p>
                                             <img src="images/default_image.png" id = "avatar_edit_add" class="edit_avatar" alt="Аватар">
                                             <input type="file" class="uploadImageAdd uploadImage" name="new_avatar" id="new_avatar" multiple accept=".png, .jpg, .jpeg">    
-                                            <script src="js/image_preview_add.js"></script>                                       
+                                            <script src="js/staff_list/image_preview_add.js"></script>                                       
                                         </p> 
                                         <p><label class="edit_hint">Роль:</label><select class="form-control" name="role" id="role"><option value="1">HR</option><option selected value="2">Сотрудник</option></select></p><br> 
                                         <p><label class="edit_hint">Имя:</label><input type="text" class="form-control" name="first_name" id="first_name" ></p><br>                                   
@@ -92,7 +92,7 @@
                         </div>
                     </div>
                 </div>  
-                <script src="js/save_new_info.js"></script>
+                <script src="js/staff_list/save_new_info.js"></script>
                 <!--editing an existing note -->
                 <div id="popupInfoEdit" class="popup">
                     <div class="popup_body">
@@ -103,7 +103,7 @@
                                         <p>
                                             <img src="images/default_image.png" id = "avatar_edit_note" class="edit_avatar" alt="Аватар">
                                             <input type="file" class="uploadImageTable uploadImage" name="edit_avatar" id="edit_avatar" multiple accept=".png, .jpg, .jpeg">    
-                                            <script src="js/image_preview_table.js"></script>                                       
+                                            <script src="js/staff_list/image_preview_table.js"></script>                                       
                                         </p> 
                                         <p><label class="edit_hint">Роль:</label><select class="form-control" name="role" id="role_edit"><option value="1">HR</option><option selected value="2">Сотрудник</option></select></p><br> 
                                         <p><label class="edit_hint">Имя:</label><input type="text" class="form-control" name="first_name" id="first_name_edit"></p><br>                                   
@@ -121,7 +121,7 @@
                     </div>
                 </div>  
                 <script src="js/popups.js"></script>
-                <script src="js/save_edited_info.js"></script>
+                <script src="js/staff_list/save_edited_info.js"></script>
             <?php endif;
             
             if ($currentRole ==  2): ?>   <!--user-->   

@@ -68,7 +68,7 @@
                                                 <p>
                                                     <img src="<?=$avatar?>" id = "avatar_edit" class="edit_avatar" alt="Аватар">
                                                     <input type="file" class="uploadImage" name="new_avatar" id="new_avatar" multiple accept=".png, .jpg, .jpeg">    
-                                                    <script src="js/image_preview_account.js"></script>                                       
+                                                    <script src="js/account/image_preview_account.js"></script>                                       
                                                 </p>                             
                                                 <p><label class="edit_hint">Имя:</label><input type="text" class="form-control" name="first_name" id="first_name" placeholder="<?=$first_name?>"></p><br>                                   
                                                 <p><label class="edit_hint">Фамилия:</label><input type="text" class="form-control" name="last_name" id="last_name" placeholder="<?=$last_name?>"></p><br> 
@@ -85,7 +85,7 @@
                             </div>
                         </div>  
                         <script src="js/popups.js"></script>
-                        <script src="js/save_edited_info_account.js"></script>
+                        <script src="js/account/save_edited_info_account.js"></script>
                     </div>
                 </div>
                 <div class="tab-2">

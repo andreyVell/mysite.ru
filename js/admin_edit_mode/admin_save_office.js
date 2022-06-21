@@ -10,11 +10,10 @@ function saveInfo()
     // собрать всю инфу с формы
     var floor = document.getElementById('floor_edit').value;
     var number = document.getElementById('number_edit').value;    
-    
     // отправить в php на обработку
     $.ajax({
         type: "POST",
-        url: '/../php/admin_edit_mode/admin_save_edited_office.php',
+        url: '/../../php/admin_edit_mode/admin_save_edited_office.php',
         data: {
             'id':cur_edit_id,
             'floor':floor,

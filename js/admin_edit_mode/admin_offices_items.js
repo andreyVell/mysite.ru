@@ -1,8 +1,8 @@
-function getItems()
+function getOfficeItems()
 {
     var office_list;
     $.ajax({
-        url:'/../php/admin_edit_mode/admin_get_office_table.php',
+        url:'/../../php/admin_edit_mode/admin_get_office_table.php',
         async: false,
         success: function(data) {
             office_list = JSON.parse(data);
@@ -83,12 +83,12 @@ function deleteItem(id)
         //удаляем DELETE PHP        
         $.ajax({
             type: "POST",
-            url: '/../php/admin_edit_mode/admin_delete_office.php',
+            url: '/../../php/admin_edit_mode/admin_delete_office.php',
             data: {'id':id},
             success: function (result) {
                 //релоад таблицу  
                 alert(JSON.parse(result));                
-                getItems();
+                getOfficeItems();
             },
             error: function (result) {
                 alert(result);
@@ -104,7 +104,7 @@ function displayEditForm(id)
     var curInfo;     
     $.ajax({
         type: "POST",
-        url: '/../php/admin_edit_mode/admin_get_placeholderInfo.php',
+        url: '/../../php/admin_edit_mode/admin_get_placeholderInfo.php',
         data: {'id':id},
         success: function (result) {            
             curInfo = JSON.parse(result);

@@ -35,7 +35,7 @@ function addInfo()
     newAvatarData.append("department", department);
     $.ajax({
         type: "POST",
-        url: '/../php/staff_list/add_new_employee.php',
+        url: '/../../php/staff_list/add_new_employee.php',
         data: newAvatarData,        
         async: false,
         cache: false,
