@@ -59,7 +59,7 @@
                             <form class="form_button_change_info popup-link" method="post" action="#popupInfoEdit">
                                 <button class="button_change_info popup-link" type="submit">Изменить персональные данные</button>
                             </form> 
-                        </a>
+                        </a>                                               
                         <div id="popupInfoEdit" class="popup">
                             <div class="popup_body">
                                 <div class="popup_content"> 

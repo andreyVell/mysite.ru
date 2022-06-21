@@ -47,7 +47,7 @@
                 <div class="tab-2">
                     <label for="tab2-1">Офисы</label>
                     <input id="tab2-1" name="tabs-two" type="radio" checked="checked">
-                    <div> 
+                    <div id="div_get_css"> 
                         <div class=wrap_table>
                             <table>
                                 <tr class="table_header" id="table_header_offices">
@@ -61,34 +61,51 @@
                             </table>
                         </div>
                         <script src="js/admin_offices_items.js"></script>
-                        <script type="text/javascript">getItems();</script>
+                        <script type="text/javascript">getItems();</script>                        
                         <a href="#popupOfficeAdd" class="popup-link">
                             <form class="form_add_office popup-link" method="post" action="#popupOfficeAdd">
-                                <button class="button_add_office btn-add popup-link">Добавить</button>
+                                <button class="button_add_office btn-add popup-link" type="submit">Добавить</button>
                             </form> 
                         </a>
-                    </div>
-                    <!--add new -->
-                    <div id="popupOfficeAdd" class="popup">
-                        <div class="popup_body">
-                            <div class="popup_content"> 
-                                <div class="popup_text"> 
-                                    <form class="edit_form" method="post" enctype="multipart/form-data">                                               
-                                        <p><label class="edit_hint">Этаж:</label><input type="text" class="form-control" name="floor" id="floor" ></p><br>                                   
-                                        <p><label class="edit_hint">Номер офиса:</label><input type="text" class="form-control" name="number" id="number" ></p><br>                                   
-                                        <button class="btn-save" id="btn_add_new_office">Сохранить</button>                                                                                 
-                                    </form>
+                        <!--add new -->
+                        <div id="popupOfficeAdd" class="popup">
+                            <div class="popup_body">
+                                <div class="popup_content"> 
+                                    <div class="popup_text"> 
+                                        <form class="add_new_form" method="post" enctype="multipart/form-data">                                               
+                                            <p><label class="edit_hint">Этаж:</label><input type="text" class="form-control" name="floor" id="floor" ></p><br>                                   
+                                            <p><label class="edit_hint">Номер офиса:</label><input type="text" class="form-control" name="number" id="number" ></p><br>                                   
+                                            <button class="btn-save" id="btn_add_new_office">Сохранить</button>                                                                                 
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>  
-                    <script src="js/admin_add_new_office.js"></script>
+                        </div>  
+                        <script src="js/admin_add_new_office.js"></script>
+                        <!-- edit one -->
+                        <div id="popupOfficeEdit" class="popup">
+                            <div class="popup_body">
+                                <div class="popup_content"> 
+                                    <div class="popup_text"> 
+                                        <form class="edit_form" method="post" enctype="multipart/form-data">    
+                                            <div id="current_office_id_for_edit" name='gg'></div>                                           
+                                            <p><label class="edit_hint">Этаж:</label><input type="text" class="form-control" name="floor_edit" id="floor_edit" ></p><br>                                   
+                                            <p><label class="edit_hint">Номер офиса:</label><input type="text" class="form-control" name="number_edit" id="number_edit" ></p><br>                                   
+                                            <button class="btn-save" id="btn_edit_office">Сохранить</button>                                                                                 
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>  
+                        <script src="js/admin_save_office.js"></script>
+                    </div>
+                    
                 </div>
                 <div class="tab-2">
                     <label for="tab2-2">Рабочие места</label>
                     <input id="tab2-2" name="tabs-two" type="radio">
-                    <div> 
-                        <!-- <div class=wrap_table>
+                    <div > 
+                        <div class=wrap_table>
                             <table>
                                 <tr class="table_header" id="table_header_workplaces">
                                     <td class="btn-column"></td>
@@ -100,17 +117,17 @@
                                 </tr>   
                                 <tbody id="workplaces"></tbody>                          
                             </table>
-                        </div> -->
+                        </div>
                         
-                        <!-- <a href="#popupWorkplaceAdd" class="">
+                        <a href="#popupWorkplaceAdd" class="">
                             <form class="form_add_workplace" method="post" action="#popupWorkplaceAdd">
                                 <button class="button_add_office btn-add">Добавить</button>
                             </form> 
-                        </a> -->
+                        </a>
                     </div>
-                </div>
-                <script src="js/popups.js"></script>
-            </div>         
+                </div>                
+            </div>        
+            <script src="js/popups.js"></script> 
             <a href="map.php" class="">
                 <form class="" action="map.php">
                     <button class="button_edit_mode_switch">Завершить редактирование</button>

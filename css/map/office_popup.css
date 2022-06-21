@@ -94,9 +94,3 @@
 .btn-save:hover {
     background-color: #323e50;
 }
-
-select {
-    min-width: 183px;
-    min-height: 23px;
-    text-align: center;
-}

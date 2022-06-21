@@ -12,7 +12,7 @@ if (popupLinks.length > 0)
     {
         const popupLink = popupLinks[index];
         popupLink.addEventListener("click",function(e)
-        {
+        {            
             const popupName =  popupLink.getAttribute('href').replace('#','');
             const curentPopup = document.getElementById(popupName);
             popupOpen(curentPopup);
@@ -36,7 +36,6 @@ if (popupCloseIcon.length > 0)
 
 function popupOpen(currentPopup)
 {
-    
     if (currentPopup && unlock)
     {        
         const popupActive = document.querySelector(".popup.open");

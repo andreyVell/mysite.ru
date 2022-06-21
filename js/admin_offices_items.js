@@ -36,11 +36,11 @@ function getItems()
         let editA = a.cloneNode(false);
         //задаём свой-ва editA
         editA.classList.add('popup-link');
-        editA.href='#popupInfoEdit';
+        editA.href='#popupOfficeEdit';  //<-- ГЛАВНЕЕ ДЛЯ ОТКРЫТИЯ ПОПАПА
         let editForm = form.cloneNode(false);
         //задаём свой-ва editForm
         editForm.classList.add('popup-link');
-        editForm.action='#popupInfoEdit';
+        editForm.action='#popupOfficeEdit';
         //задаём сво-ства editButton
         editButton.classList.add('popup-link');
         editForm.appendChild(editButton);
@@ -75,77 +75,51 @@ function getItems()
     }
 }
 
-// function deleteItem(id)
-// {
-//     //спрашиваем уверены ли в удалении
-//     if (confirm("Удалить?"))
-//     {        
-//         var currentID;
-//         $.ajax({
-//             url:'/../php/office_list/get_currentID.php',
-//             async: false,
-//             success: function(data) {
-//                 currentID = JSON.parse(data);
-//             }
-//         });    
-//         //удаляем DELETE PHP        
-//         $.ajax({
-//             type: "POST",
-//             url: '/../php/office_list/delete_employee.php',
-//             data: {'id':id},
-//             success: function (result) {
-//                 //релоад таблицу  
-//                 alert("Удалено!");
-//                 if (currentID==id) 
-//                     location.reload();
-//                 else
-//                     getItems();
-//             },
-//             error: function (result) {
-//                 alert(result);
-//             },
-//             contentType: 'application/x-www-form-urlencoded; charset=UTF-8'
-//           });
+function deleteItem(id)
+{
+    //спрашиваем уверены ли в удалении
+    if (confirm("Удалить?"))
+    {             
+        //удаляем DELETE PHP        
+        $.ajax({
+            type: "POST",
+            url: '/../php/admin_edit_mode/admin_delete_office.php',
+            data: {'id':id},
+            success: function (result) {
+                //релоад таблицу  
+                alert(JSON.parse(result));                
+                getItems();
+            },
+            error: function (result) {
+                alert(result);
+            },
+            contentType: 'application/x-www-form-urlencoded; charset=UTF-8'
+          });
               
-//     }
-// }
-// function displayEditForm(id)
-// {
-//     //получить все згначения Placeholdera для текущего IDc
-//     var curInfo;     
-//     $.ajax({
-//         type: "POST",
-//         url: '/../php/office_list/get_currentInfoViaID.php',
-//         data: {'id':id},
-//         success: function (result) {            
-//             curInfo = JSON.parse(result);
-//             var curId=curInfo[0];
-//             var curLogin=curInfo[1];
-//             var curPassword=curInfo[2];
-//             var curImage=curInfo[3];
-//             var curRole=curInfo[4];
-//             var curFirst_name=curInfo[5];
-//             var curLast_name=curInfo[6];
-//             var curPatronymic=curInfo[7];
-//             var curPhone_number=curInfo[8];
-//             var curEmail=curInfo[9];
-//             var curDepartment=curInfo[10];
-//             //подогнать значения placeholdera под текущий ID
-//             document.getElementById('current_id_for_edit').setAttribute('name', curId);
-//             document.getElementById('avatar_edit_note').src=curImage;
-//             document.getElementById('role_edit').value=curRole;
-//             document.getElementById('login_edit').placeholder=curLogin;
-//             document.getElementById('first_name_edit').placeholder=curFirst_name;
-//             document.getElementById('last_name_edit').placeholder=curLast_name;
-//             document.getElementById('patronymic_edit').placeholder=curPatronymic;
-//             document.getElementById('phone_number_edit').placeholder=curPhone_number;
-//             document.getElementById('email_address_edit').placeholder=curEmail;
-//             document.getElementById('department_edit').placeholder=curDepartment;
-//         },
-//         error: function (result) {
-//             alert('error');
-//         },
-//         contentType: 'application/x-www-form-urlencoded; charset=UTF-8'
-//         });
+    }
+}
+function displayEditForm(id)
+{
+    //получить все згначения Placeholdera для текущего IDc
+    var curInfo;     
+    $.ajax({
+        type: "POST",
+        url: '/../php/admin_edit_mode/admin_get_placeholderInfo.php',
+        data: {'id':id},
+        success: function (result) {            
+            curInfo = JSON.parse(result);
+            var curId =curInfo[0];
+            var curFloor=curInfo[1];
+            var curNumber=curInfo[2];            
+            //подогнать значения placeholdera под текущий ID7
+            document.getElementById('current_office_id_for_edit').setAttribute('name', curId);
+            document.getElementById('floor_edit').placeholder=curFloor;
+            document.getElementById('number_edit').placeholder=curNumber;
+        },
+        error: function (result) {
+            alert('Error!');
+        },
+        contentType: 'application/x-www-form-urlencoded; charset=UTF-8'
+        });
     
-// }
+}

@@ -40,9 +40,9 @@ table {
 .button_edit_mode_switch {
     position: absolute;
     bottom: 5%;
-    left: 25%;    
+    left: 30%;    
     text-align: center;  
-    width: 50%;
+    width: 40%;
     border: 0;
     border-radius: 15px;
     color: white;

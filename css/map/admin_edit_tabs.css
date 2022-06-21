@@ -4,48 +4,54 @@ textarea:focus,
 select:focus {
   outline: none; }
 
-.tabs {
+  .tabs {
+    display: block;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -moz-flex-wrap: wrap;
+    overflow: hidden;  
+    height: 100%;
+    min-height: 500px;
+    margin-left: 30px;
+    margin-top: 15px;
+    margin-right: 30px;
+    margin-bottom: 30px;   
+    
+  }
+
+
+/* настройки названия вкладок */
+.tabs [class^="tab"] label,
+.tabs [class*=" tab"] label {
+  color: black;
+  cursor: pointer;
   display: block;
-  display: -webkit-flex;
-  display: -moz-flex;
-  display: flex;
-  -webkit-flex-wrap: wrap;
-  -moz-flex-wrap: wrap;
-  flex-wrap: wrap;
-  margin-left: 30px;
-  margin-top: 15px;
-  margin-right: 30px;
-  margin-bottom: 100px;
-  overflow: hidden; }
+  font-family: 'Montserrat', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 25px;
+  line-height: 39px;
+  padding: 0;
+  text-align: center; }
 
 
-  .tabs [class^="tab"] label,
-  .tabs [class*=" tab"] label {
-    color: black;
-    cursor: pointer;
-    display: block;
-    font-family: 'Montserrat', sans-serif;
-    font-style: normal;
-      font-weight: 500;
-      font-size: 25px;
-      line-height: 39px;
-    padding: 0;
-    text-align: center; }
-
-
-  .tabs [class^="tab"] [type="radio"],
-  .tabs [class*=" tab"] [type="radio"] {
-    border-bottom: 1px solid rgba(239, 237, 239, 0.5);
-    cursor: pointer;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    display: block;
-    width: 100%;
-    -webkit-transition: all 0.3s ease-in-out;
-    -moz-transition: all 0.3s ease-in-out;
-    -o-transition: all 0.3s ease-in-out;
-    transition: all 0.3s ease-in-out; }
+/* настройка анимации отображения полосок под названиями вкладок */
+.tabs [class^="tab"] [type="radio"],
+.tabs [class*=" tab"] [type="radio"] {
+  border-bottom: 1px solid rgba(239, 237, 239, 0.5);
+  cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  display: block;
+  width: 100%;  
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out; }
 
 
     .tabs [class^="tab"] [type="radio"]:hover, .tabs [class^="tab"] [type="radio"]:focus,
@@ -70,6 +76,9 @@ select:focus {
 
     .tabs [class^="tab"] [type="radio"] + div,
     .tabs [class*=" tab"] [type="radio"] + div {
+      min-height: 500px;
+      
+   
       display: block;
       opacity: 0;
       padding: 2rem 0;
@@ -134,11 +143,11 @@ select:focus {
 }
 
 .btn-add{
-    position: absolute;
-    bottom: 15%;
-    left: 25%;    
-    text-align: center;     
-    width: 50%;
+     margin-top: -45px;
+    text-align: center;  
+    margin-left: 33%; 
+    margin-right: 33%;  
+    width: 34%;
     border: 0;
     border-radius: 15px;
     color: white;
