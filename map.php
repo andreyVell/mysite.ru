@@ -44,6 +44,15 @@
                     <tbody id="worplaces_list"></tbody>         
                 </table>
             </div>      
+            <!--Draggable DIV:-->
+            <div id="mydiv">
+                <!--Include a header DIV with the same name as the draggable DIV, followed by "header":-->
+                <div id="mydivheader">Click here to move</div>
+                <p>Move</p>
+                <p>this</p>
+                <p>DIV</p>
+            </div>
+            <script src="js/testDRAG.js"></script>
             <script src="js/admin_edit_mode/worplaces_items.js"></script>
             <script type="text/javascript">getItems();</script>
             <?php

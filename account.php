@@ -96,7 +96,7 @@
                             <tr class="table_header">
                                 <td >№</td>
                                 <td >Расположение</td>
-                                <td >Номер рабочего места</td>
+                                <!-- <td >Номер рабочего места</td> -->
                                 <td >Начало</td>
                                 <td >Конец</td>
                             </tr>
@@ -107,7 +107,7 @@
                                     <tr class="table_cell">
                                         <td><?php echo $row['id'];?></td>
                                         <td><?php echo "Этаж ".$row['floor'].", офис ".$row['office_number'].", стол ".$row['number'];?></td>
-                                        <td><?php echo $row['number'];?></td>
+                                        <!-- <td><?php //echo $row['number'];?></td> -->
                                         <td><?php echo $row['start_time'];?></td>                                
                                         <td><?php echo $row['end_time'];?></td>
                                     </tr>

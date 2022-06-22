@@ -19,7 +19,7 @@ select:focus {
     margin-top: 15px;
     margin-right: 30px;
     margin-bottom: 30px;   
-    
+    /* background-color: red; */
   }
 
 
@@ -77,8 +77,7 @@ select:focus {
     .tabs [class^="tab"] [type="radio"] + div,
     .tabs [class*=" tab"] [type="radio"] + div {
       min-height: 500px;
-      
-   
+      /* background-color: red; */
       display: block;
       opacity: 0;
       padding: 2rem 0;
@@ -104,43 +103,7 @@ select:focus {
     .tabs .tab-2:last-child [type="radio"]:checked + div {
       margin-left: -100%; }
 
-.full_name{
-  margin-left: 30%;
-  margin-top: 0px;
-  text-align: left;
-  vertical-align: middle;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 700;
-  font-size: 30px;
-  line-height: 44px;
-  color: Black;
-  }
-  
-.full_avatar {
-  margin-left: 13%;
-  margin-top: -15px;
-  float: left;
-  width: 120px;
-  height: 120px;
-  border-radius: 100%;
-  }
 
-.full_location {
-  margin-left: 30%;
-  margin-top: -25px;
-  text-align: left;
-  vertical-align: middle;
-  font-family: 'Montserrat', sans-serif;
-  font-style: normal;
-  font-weight: 300;
-  font-size: 25px;
-  color: black;
-  }
-
-.contact_info {
-  margin-top: 100px;
-  margin-left: 25%;
-}
 
 .btn-add{
      margin-top: -45px;

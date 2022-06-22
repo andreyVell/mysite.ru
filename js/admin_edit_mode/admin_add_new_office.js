@@ -16,6 +16,9 @@ function addOfficeInfo()
     }
     // отправить в php на обработку
     var newData = new FormData();
+    if (document.getElementById("add_new_scheme").files.length>0)  
+        newData.append("add_new_scheme", document.getElementById("add_new_scheme").files[0],document.getElementById("add_new_scheme").files[0].name); 
+   
     newData.append("floor", floor);    
     newData.append("number", number);
     $.ajax({

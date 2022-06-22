@@ -47,7 +47,7 @@
                 <div class="tab-2">
                     <label for="tab2-1">Офисы</label>
                     <input id="tab2-1" name="tabs-two" type="radio" checked="checked">
-                    <div id="div_get_css"> 
+                    <div > 
                         <div class=wrap_table>
                             <table>
                                 <tr class="table_header" id="table_header_offices">
@@ -72,7 +72,12 @@
                             <div class="popup_body">
                                 <div class="popup_content"> 
                                     <div class="popup_text"> 
-                                        <form class="add_new_form" method="post" enctype="multipart/form-data">                                               
+                                        <form class="add_new_form" method="post" enctype="multipart/form-data"> 
+                                            <p>
+                                                <img src="office_schemes/default.jpg" id = "office_scheme_add_new" class="office_scheme_add_new" alt="Схема">
+                                                <input type="file" class="uploadImageAddNewScheme uploadImage" name="add_new_scheme" id="add_new_scheme" multiple accept=".png, .jpg, .jpeg">    
+                                                <script src="js/admin_edit_mode/admin_add_new_office_image_preview.js"></script>                                       
+                                            </p>                                               
                                             <p><label class="edit_hint">Этаж:</label><input type="text" class="form-control" name="floor" id="floor" ></p><br>                                   
                                             <p><label class="edit_hint">Номер офиса:</label><input type="text" class="form-control" name="number" id="number" ></p><br>                                   
                                             <button class="btn-save" id="btn_add_new_office">Сохранить</button>                                                                                 
@@ -162,9 +167,9 @@
                 </div>                
             </div>        
             <script src="js/popups.js"></script> 
-            <a href="map.php" class="">
-                <form class="" action="map.php">
-                    <button class="button_edit_mode_switch">Завершить редактирование</button>
+            <a href="map.php" class="popup-link">
+                <form class="popup-link" action="map.php">
+                    <button class="button_edit_mode_switch popup-link">Завершить редактирование</button>
                 </form>   
             </a> 
         </div>                 

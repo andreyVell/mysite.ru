@@ -13,6 +13,8 @@
 }
 
 .popup.open {
+    
+    z-index: 100;
     opacity: 1;
     visibility: visible;
 }
@@ -62,17 +64,17 @@
 }
 
 
-.edit_avatar {
-    margin-left: 33%;
-    margin-top: -35px;
+.office_scheme_add_new {
+    margin-left: 25%;
+    /* margin-top: -35px; */
     float: center;
-    max-height: 120px;
-    max-width: 120px;
-    border-radius: 100%;
+    max-height: 250px;
+    max-width: 250px;
+    /* border-radius: 100%; */
     border: 3px solid black;
     }
 .uploadImage {
-    margin-left: 23%;
+    margin-left: 27%;
 }
 
 .btn-save {

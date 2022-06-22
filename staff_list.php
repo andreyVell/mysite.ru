@@ -62,7 +62,7 @@
             require "php/database/role_identification.php";
             if ($currentRole ==  1): ?>   <!--admin-->   
                 <a href="#popupInfoAdd" class="popup-link">
-                    <form class="form_button_add popup-link" action="#popupInfoAdd">
+                    <form class="popup-link" action="#popupInfoAdd">
                         <button class="button_add popup-link">Добавить сотрудника</button>
                     </form> 
                 </a>
