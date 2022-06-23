@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">    
     <link REL=stylesheet HREF="css/mainMenu_and_bg.css" TYPE="text/css"> 
-    <link REL=stylesheet HREF="css/map/workplaces_list.css" TYPE="text/css">  
+    <link REL=stylesheet HREF="css/map/map_main_part.css" TYPE="text/css">  
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script src="https://kit.fontawesome.com/3097d0fe75.js" crossorigin="anonymous"></script> 
     <title>Карта</title>
@@ -36,25 +36,35 @@
         </div> 
         <div id="rectangle" class="main_part">
             <!--WRITE CODE HERE -->
-            <div class=wrap_table>   
-                <table>
-                    <tr class="table_header" id="table_header">                        
-                        <th >Доступные столы</th>                       
-                    </tr>       
-                    <tbody id="worplaces_list"></tbody>         
-                </table>
-            </div>      
+            <div class="wrap_part">
+                <!-- <div class="office_object">Этаж 1, офис 15</div> 
+                <div class="office_object"></div>
+                <div class="office_object"></div>
+                <div class="office_object"></div>
+                <div class="office_object"></div>
+                <div class="office_object"></div>
+                <div class="office_object"></div>
+                <div class="office_object"></div>
+                <div class="office_object"></div> 
+                <div class="office_object"></div>
+                <div class="office_object"></div>
+                <div class="office_object"></div>
+                <div class="office_object"></div>
+                <div class="office_object"></div>
+                <div class="office_object"></div>
+                <div class="office_object"></div> -->
+            </div>
             <!--Draggable DIV:-->
-            <div id="mydiv">
+            <!-- <div id="mydiv"> -->
                 <!--Include a header DIV with the same name as the draggable DIV, followed by "header":-->
-                <div id="mydivheader">Click here to move</div>
+                <!-- <div id="mydivheader">Click here to move</div>
                 <p>Move</p>
                 <p>this</p>
                 <p>DIV</p>
             </div>
-            <script src="js/testDRAG.js"></script>
-            <script src="js/admin_edit_mode/worplaces_items.js"></script>
-            <script type="text/javascript">getItems();</script>
+            <script src="js/testDRAG.js"></script> -->
+            <script src="js/map/map_get_offices.js"></script>
+            <script type="text/javascript">mapGetOfficeItems();</script> 
             <?php
                 require "php/database/role_identification.php";
 

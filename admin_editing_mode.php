@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">    
     <link REL=stylesheet HREF="css/mainMenu_and_bg.css" TYPE="text/css"> 
-    <link REL=stylesheet HREF="css/map/workplaces_list.css" TYPE="text/css"> 
+    <link REL=stylesheet HREF="css/map/map_main_part.css" TYPE="text/css"> 
     <link REL=stylesheet HREF="css/map/admin_edit_tabs.css" TYPE="text/css">  
     <link REL=stylesheet HREF="css/map/office_popup.css" TYPE="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
@@ -74,7 +74,7 @@
                                     <div class="popup_text"> 
                                         <form class="add_new_form" method="post" enctype="multipart/form-data"> 
                                             <p>
-                                                <img src="office_schemes/default.jpg" id = "office_scheme_add_new" class="office_scheme_add_new" alt="Схема">
+                                                <img src="office_schemes/default.jpg" id = "office_scheme_add_new" class="office_scheme_add_new office_scheme_image" alt="Схема">
                                                 <input type="file" class="uploadImageAddNewScheme uploadImage" name="add_new_scheme" id="add_new_scheme" multiple accept=".png, .jpg, .jpeg">    
                                                 <script src="js/admin_edit_mode/admin_add_new_office_image_preview.js"></script>                                       
                                             </p>                                               
@@ -93,7 +93,12 @@
                                 <div class="popup_content"> 
                                     <div class="popup_text"> 
                                         <form class="edit_form" method="post" enctype="multipart/form-data">    
-                                            <div id="current_office_id_for_edit" name='gg'></div>                                           
+                                            <div id="current_office_id_for_edit" name='gg'></div> 
+                                            <p>
+                                                <img src="office_schemes/default.jpg" id = "office_scheme_edit_one" class="office_scheme_edit_one office_scheme_image" alt="Схема">
+                                                <input type="file" class="uploadImageEditOneScheme uploadImage" name="edit_one_scheme" id="edit_one_scheme" multiple accept=".png, .jpg, .jpeg">    
+                                                <script src="js/admin_edit_mode/admin_edit_one_office_image_preview.js"></script>                                       
+                                            </p>                                           
                                             <p><label class="edit_hint">Этаж:</label><input type="text" class="form-control" name="floor_edit" id="floor_edit" ></p><br>                                   
                                             <p><label class="edit_hint">Номер офиса:</label><input type="text" class="form-control" name="number_edit" id="number_edit" ></p><br>                                   
                                             <button class="btn-save" id="btn_edit_office">Сохранить</button>                                                                                 

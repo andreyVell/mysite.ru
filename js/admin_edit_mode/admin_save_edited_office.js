@@ -11,23 +11,31 @@ function saveOfficeInfo()
     var floor = document.getElementById('floor_edit').value;
     var number = document.getElementById('number_edit').value;    
     // отправить в php на обработку    
+    var newOfficeData = new FormData();
+    if (document.getElementById("edit_one_scheme").files.length>0) 
+        newOfficeData.append("edit_one_scheme", document.getElementById("edit_one_scheme").files[0],document.getElementById("edit_one_scheme").files[0].name); 
+       
+    newOfficeData.append("id", cur_edit_id); 
+    newOfficeData.append("floor", floor); 
+    newOfficeData.append("number", number); 
+
+
     $.ajax({
         type: "POST",
         url: '/../../php/admin_edit_mode/admin_save_edited_office.php',
-        data: {
-            'id':cur_edit_id,
-            'floor':floor,
-            'number':number,
-        },        
+        data: newOfficeData,        
+        async: false,
+        cache: false,
+        processData: false,
         success: function (result) { 
-            let info =JSON.parse(result);
+            let info=JSON.parse(result);
             alert(info);
-            if (info=="Сохранено!")
+            if (info=='Сохранено!') 
                 //обновляем страницу
                 location.reload();
         },
         error: function (result) { alert(JSON.parse(result));
         },
-        contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+        contentType: false,
     });    
 }

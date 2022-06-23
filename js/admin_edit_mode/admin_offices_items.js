@@ -110,11 +110,13 @@ function displayEditForm(id)
             curInfo = JSON.parse(result);
             var curId =curInfo[0];
             var curFloor=curInfo[1];
-            var curNumber=curInfo[2];            
+            var curNumber=curInfo[2];         
+            var curImage = curInfo[3];   
             //подогнать значения placeholdera под текущий ID
             document.getElementById('current_office_id_for_edit').setAttribute('name', curId);
             document.getElementById('floor_edit').placeholder=curFloor;
             document.getElementById('number_edit').placeholder=curNumber;
+            document.getElementById('office_scheme_edit_one').src=curImage;
         },
         error: function (result) {
             alert('Error!');
