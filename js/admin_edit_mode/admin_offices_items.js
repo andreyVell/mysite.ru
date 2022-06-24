@@ -88,14 +88,13 @@ function deleteItem(id)
             success: function (result) {
                 //релоад таблицу  
                 alert(JSON.parse(result));                
-                getOfficeItems();
+                location.reload();
             },
             error: function (result) {
                 alert(result);
             },
             contentType: 'application/x-www-form-urlencoded; charset=UTF-8'
-          });
-              
+          });            
     }
 }
 function displayEditForm(id)

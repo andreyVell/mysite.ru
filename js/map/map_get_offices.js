@@ -33,10 +33,304 @@ function displayBooking(id)
     while (tBody.firstChild) {
         tBody.removeChild(tBody.firstChild);
     }
-    //сначала получаем всю инфу об офисе
-    //получаем всю инфу об рабочих местах в этом офисе
+    //удаляем кнопку редактирования
+    document.querySelector(".main_part").removeChild(document.getElementById('admin_edit_button'));
+    //сразу добавляем div в tBody
+    let divMain=document.createElement('div');
+    divMain.id="wrap_map_area";
+    tBody.appendChild(divMain);
+    //сначала получаем всю инфу об офисе через id 
+    var newOfficeData = new FormData();
+    newOfficeData.append("id", id); 
+    var curOfficeInfo;    
+    $.ajax({
+        type: "POST",
+        url: '/../../php/admin_edit_mode/admin_get_offices_placeholderInfo.php',
+        data: newOfficeData,        
+        async: false,
+        cache: false,
+        processData: false,
+        success: function (result) { 
+            curOfficeInfo=JSON.parse(result);
+        },
+        error: function (result) { alert(JSON.parse(result));
+        },
+        contentType: false,
+    });    
+    var curId =curOfficeInfo[0];
+    var curFloor=curOfficeInfo[1];
+    var curNumber=curOfficeInfo[2];         
+    var curImage = curOfficeInfo[3]; 
+    //добавляем строку навигации
     let a = document.createElement('a');
     a.href="map.php";
-    a.innerHTML='Карта/';
-    tBody.appendChild(a);
+    a.innerHTML='Карта > Этаж '+curFloor+"-офис "+curNumber;
+    a.classList.add("nav_bar");
+    document.querySelector(".main_part").insertBefore(a,document.querySelector(".main_part").firstChild);
+
+    
+    //рисуем карту на бг
+    let img = document.createElement('img');
+    img.src=curImage;
+    img.classList.add('scheme_img');
+    img.zoom="100%"
+    divMain.appendChild(img);
+    divMain.style.marginTop='0px'
+    //zoom in/out
+    let zoomInIcon = document.createElement('i');
+    zoomInIcon.classList.add('fa-solid');
+    zoomInIcon.classList.add('fa-magnifying-glass-plus');
+    let zoomInButtom = document.createElement('button');
+    zoomInButtom.classList.add('zoomInButton');
+    zoomInButtom.appendChild(zoomInIcon);
+    zoomInButtom.setAttribute('onclick','zoomIn()');
+    document.querySelector(".main_part").appendChild(zoomInButtom);
+
+    let zoomOutIcon = document.createElement('i');
+    zoomOutIcon.classList.add('fa-solid');
+    zoomOutIcon.classList.add('fa-magnifying-glass-minus');
+    let zoomOutButtom = document.createElement('button');
+    zoomOutButtom.classList.add('zoomOutButton');
+    zoomOutButtom.appendChild(zoomOutIcon);
+    zoomOutButtom.setAttribute('onclick','zoomOut()');
+    document.querySelector(".main_part").appendChild(zoomOutButtom);
+    
+    
+    //получаем всю инфу об рабочих местах в этом офисе
+    var newCurWorkplacesData = new FormData();
+    newCurWorkplacesData.append("id", curId); 
+    var curOfficeWorkplacesInfo;    
+    $.ajax({
+        type: "POST",
+        url: '/../../php/map/map_get_workplaces_in_cur_office.php',
+        data: newCurWorkplacesData,        
+        async: false,
+        cache: false,
+        processData: false,
+        success: function (result) { 
+            curOfficeWorkplacesInfo=JSON.parse(result);            
+        },
+        error: function (result) { alert(JSON.parse(result));
+        },
+        contentType: false,
+    });    
+    
+    //рисуем столы curOfficeWorkplacesInfo
+    curOfficeWorkplacesInfo.forEach(element => {
+        let workplace_object=document.createElement('div');
+        workplace_object.classList.add('workplace_object');
+        if (element[4]==1)
+            workplace_object.classList.add('notfree');
+        else
+            workplace_object.classList.add('free');
+        workplace_object.innerHTML=element[1];
+        workplace_object.style.top=element[6];
+        workplace_object.style.left=element[7];
+        workplace_object.setAttribute('onclick','displayBookingPopup('+element[0]+')');
+        workplace_object.classList.add('popup-link');
+
+        let aWPPopup = document.createElement('a');
+        aWPPopup.classList.add('popup-link');
+        aWPPopup.href = '#popupWorkplaceBook';
+        aWPPopup.appendChild(workplace_object);
+        
+        divMain.appendChild(aWPPopup);
+    });  
+    //для удобства изначальный зум
+    document.getElementById("wrap_map_area").style.zoom="50%"; 
+    //чтобы popup работал
+    makePopupWorks();
+}
+const zoomDelta=5;
+function zoomIn()
+{
+    let curArea = document.getElementById("wrap_map_area");    
+    let curZoom = Number(curArea.style.zoom.slice(0, -1));
+    if (curZoom==0)
+        curZoom=100;
+    let newZoom = curZoom+zoomDelta;
+    curArea.style.zoom=newZoom+"%";
+}
+function zoomOut()
+{
+    let curArea = document.getElementById("wrap_map_area"); 
+    let curZoom = Number(curArea.style.zoom.slice(0, -1));
+    if (curZoom==0)
+        curZoom=100;
+    if (curZoom-zoomDelta>0)
+        {
+            let newZoom = curZoom-zoomDelta;
+            curArea.style.zoom=newZoom+"%";
+        }
+    
+}
+function displayBookingPopup(id)
+{    
+    //устанавливаем id для сохранения 
+    document.getElementById('current_workplace_id_for_booking').name=id;    
+    //получаем информацию для конкретного стола и подгоняем инфу с попапа под конретный стол
+    //местоположение и спецификация
+    $.ajax({
+        type: "POST",
+        url: '/../../php/map/get_wp_location_and_spec.php',
+        data: {'id':id},
+        success: function (result) {            
+            var curInfo = JSON.parse(result); 
+            document.querySelector('.workplace_location_info').innerHTML="Этаж "+curInfo[0]+", офис "+curInfo[1]+", рабочее место "+curInfo[2];            
+            document.querySelector('.workplace_specification_info').innerHTML='<span class="computer">Компьютер: </span>'+curInfo[3];
+        },
+        error: function (result) {
+            alert('error');
+        },
+        contentType: 'application/x-www-form-urlencoded; charset=UTF-8'
+        });
+    //Текущий пользователь
+    $.ajax({
+        type: "POST",
+        url: '/../../php/map/get_wp_curUser.php',
+        data: {'id':id},
+        success: function (result) {            
+            var curInfo = JSON.parse(result); 
+            if (curInfo!= null)
+                document.querySelector('.workplace_curr_user_info').innerHTML='<span>Располагается: </span>'+curInfo[1]+' '+curInfo[0]+' '+curInfo[2];
+            else
+                document.querySelector('.workplace_curr_user_info').innerHTML='';
+        },
+        error: function (result) {
+            alert('error');
+        },
+        contentType: 'application/x-www-form-urlencoded; charset=UTF-8'
+        });
+    //История бронирования
+    const tBody = document.getElementById('booking_list');
+    //очищаем таблицу перед созданием
+    while (tBody.firstChild) {
+        tBody.removeChild(tBody.firstChild);
+    }
+    $.ajax({
+        type: "POST",
+        url: '/../../php/map/get_wp_bookingHistory.php',
+        data: {'id':id},
+        success: function (result) {            
+            var curInfo = JSON.parse(result);
+            if  (curInfo.length==0)
+            {
+                let emptyNode = document.createTextNode('Пусто');
+                let tr = tBody.insertRow();  
+                tr.classList.add('table_cell');
+                tr.style.fontStyle='italic';
+                let td10 = tr.insertCell(0);
+                td10.appendChild(emptyNode.cloneNode(false));
+                let td11 = tr.insertCell(1);
+                td11.appendChild(emptyNode.cloneNode(false));
+                let td12 = tr.insertCell(2);
+                td12.appendChild(emptyNode.cloneNode(false));
+            }
+            for (var i =0;i<curInfo.length;i++)
+            {
+                let nameNode = document.createTextNode(curInfo[i][1]+' '+curInfo[i][0]+' '+curInfo[i][2]);
+                let startDateNode = document.createTextNode(curInfo[i][3]);
+                let endDateNode = document.createTextNode(curInfo[i][4]);
+                let tr = tBody.insertRow();                
+                tr.classList.add('table_cell');
+                //если дата текущая то 
+                var curDate=new Date();
+                var startDate=new Date(curInfo[i][3]);
+                var endDate=new Date(curInfo[i][4]);
+                if (startDate<=curDate && curDate<=endDate)
+                    tr.classList.add('current');
+
+                let td0 = tr.insertCell(0);
+                td0.appendChild(nameNode);
+
+                let td1 = tr.insertCell(1);
+                td1.appendChild(startDateNode);
+
+                let td2 = tr.insertCell(2);
+                td2.appendChild(endDateNode);
+            }
+        },
+        error: function (result) {
+            alert('error');
+        },
+        contentType: 'application/x-www-form-urlencoded; charset=UTF-8'
+        });
+    
+    var curUser = document.querySelector('.workplace_curr_user_info'); 
+
+    
+}
+
+function makePopupWorks()
+{
+    const popupLinks = document.querySelectorAll(".popup-link");
+    const body = document.querySelector('body');
+    const lockPadding = document.querySelectorAll(".lock-padding");
+
+    let unlock = true;
+
+    const timeout =300;
+
+    if (popupLinks.length > 0)
+    {        
+        for (let index = 0; index<popupLinks.length;index++)
+        {
+            const popupLink = popupLinks[index];
+            popupLink.addEventListener("click",function(e)
+            {            
+                
+                const popupName =  popupLink.getAttribute('href').replace('#','');
+                const curentPopup = document.getElementById(popupName);
+                popupOpen(curentPopup);
+                e.preventDefault();
+            });
+        }
+    }
+
+    const popupCloseIcon = document.querySelectorAll('.close-popup');
+    if (popupCloseIcon.length > 0)
+    {
+        for (let index = 0; index<popupCloseIcon.length;index++)
+        {
+            const el = popupCloseIcon[index];
+            el.addEventListener('click',function(e) {
+                popupCloseIcon(el.closest('.popup'));
+                e.preventDefault();
+            });
+        }
+    }
+
+    function popupOpen(currentPopup)
+    {
+        if (currentPopup && unlock)
+        {        
+            const popupActive = document.querySelector(".popup.open");
+            if (popupActive)
+            {
+                popupCloseIcon(popupActive, false);
+            }        
+            
+            currentPopup.classList.add('open');
+            currentPopup.addEventListener("click",function(e){
+                if (!e.target.closest('.popup_content'))
+                {
+                    popupClose(e.target.closest('.popup'));
+                }
+            });
+        }
+    }
+    function popupClose(popupActive)
+    {
+        if (unlock)
+        {
+            popupActive.classList.remove('open');
+        }
+    }
+
+    document.addEventListener('keydown', function (e){
+        if (e.which === 27) {
+            const popupActive = document.querySelector('.popup.open');
+            popupClose(popupActive);
+        }
+    });
 }

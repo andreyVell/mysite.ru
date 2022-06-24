@@ -1,0 +1,134 @@
+.popup { /*Расположение окна*/
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    visibility: hidden;
+    overflow-y: auto;
+    overflow-x: hidden;
+    transition: all 0.3s ease 0s;
+    color: white;
+}
+
+.popup.open {
+    
+    z-index: 100;
+    opacity: 1;
+    visibility: visible;
+}
+
+.popup_body { /*настройка фона и расположения*/
+    min-height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 1% 1% 1% 23%;
+}
+.popup_content { /* настройка самой формы окна*/
+    background-color: white;
+    border-radius: 15px;
+    min-width: 400px;
+    min-height: 100px;
+    padding: 30px;
+    padding-top: 0px;
+    padding-bottom: 60px;
+    position: relative;
+    text-align: center;
+    padding-left: 15px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 100;
+    float: left;
+    color: black;
+    font-size: 22px;
+    text-align: left;
+}
+
+.wp_info {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 100;    
+    color: black;
+    font-size: 22px;
+    text-align: center;
+}
+
+.workplace_location_info {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 750;    
+    color: black;
+    font-size: 30px;
+    text-align: center;
+}
+span {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;    
+    color: black;
+    font-size: 22px;
+}
+.history_table_label{
+    margin-bottom: -10px;
+}
+table {
+    width: 97%;
+    background-color: #E9ECEE;
+    border-radius: 15px;
+    border-spacing: 10px;    
+    border-collapse: separate;
+}
+
+.wrap_table {
+    margin: 15px;
+    position: relative;
+    width: 97%;
+    max-width: 97%;
+    max-height: 250px;
+    overflow-x: auto;
+    overflow-y: auto;
+  }
+.table_header {
+    font-family: 'Montserrat', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    color: black;
+    text-align: center;
+}
+
+.table_cell {
+    font-family: 'Montserrat', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    text-align: center;
+    color: #0F2232;
+}
+
+.table_cell.current {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: 16px;
+    text-align: center;
+    color: #0F2232;
+}
+
+.btn-save {
+    position: absolute;    
+    left: 25%;  
+    bottom: 10px;  
+    text-align: center;  
+    width: 50%;
+    border: 0;
+    border-radius: 15px;
+    color: white;
+    background-color: #485973;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 100;
+    font-size: 20px;
+    line-height: 35px;
+}
+
+.btn-save:hover {
+    background-color: #323e50;
+}

@@ -1,4 +1,5 @@
 <?php    
+  
     $curId = trim($_POST['id']);
     require __DIR__."/../database/connect.php";        
     $sqlResult= $mysql->query("

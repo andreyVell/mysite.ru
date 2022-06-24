@@ -28,7 +28,7 @@ function saveWorkplaceInfo()
                 {
                     //обновляем страницу
                     location.reload();
-                    getWorkplaceItems();
+                    //getWorkplaceItems();
                 }
 
         },

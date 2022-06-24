@@ -40,11 +40,11 @@
     margin-top: 15px;
     margin-left: 7px;
     margin-right: 0px;
-    margin-bottom: 0px;
+    margin-bottom: 15px;
     position: relative;
     width: 97%;
     max-width: 97%;
-    max-height: 500px;
+    max-height: 80%;
     overflow-x: auto;
     overflow-y: auto;
   }
@@ -81,4 +81,103 @@
     /* background: #a2a5a7; */
     border: 3px solid rgb(60, 154, 255);
     color: rgb(60, 154, 255);
+}
+
+.nav_bar {
+    font-family: 'Montserrat', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 22px;
+    text-align: center;
+    color: black;
+    text-decoration: none;
+    margin: 10px;
+    line-height: 40px;
+}
+
+.nav_bar:hover {
+    color: rgb(60, 154, 255);
+}
+
+.scheme_img{
+    /* border: 3px solid black; */
+}
+
+.zoomInButton {
+    position: absolute;
+    top: 90%;
+    right: 55%;
+
+    z-index: 1;
+    text-align: center; 
+    width: 50px;
+    height: 50px;
+    border: 0;
+    border-radius: 100%;
+    color: white;
+    background-color: #485973;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 100;
+    font-size: 20px;
+    line-height: 43px;
+}
+
+.zoomOutButton {
+    position: absolute;
+    top: 90%;
+    right: 45%;
+
+    z-index: 1;
+    text-align: center; 
+    width: 50px;
+    height: 50px;
+    border: 0;
+    border-radius: 100%;
+    color: white;
+    background-color: #485973;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 100;
+    font-size: 20px;
+    line-height: 43px;
+}
+
+.zoomInButton:hover {
+    background-color: #323e50;
+}
+
+.zoomOutButton:hover {
+    background-color: #323e50;
+}
+
+.workplace_object {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: #E9ECEE;
+    border: 5px solid black;
+    /* box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3); */
+    border-radius: 20px;
+
+
+
+    font-family: 'Montserrat', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 100px;
+    color: black;
+}
+.workplace_object:hover {
+    background: #d2d4d6;
+}
+.workplace_object.free {
+    border: 5px solid #22B573;
+    color: #22B573;
+}
+
+.workplace_object.notfree {
+    border: 5px solid #FF0000;
+    color: #FF0000;
 }

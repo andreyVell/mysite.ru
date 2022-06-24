@@ -45,7 +45,7 @@
     $id = $users['id'];
     $avatar =$users['image'];
     $name=$users['last_name']." ".$users['first_name']." ".$users['patronymic'];
-    $workplace=$users['department'].", этаж ".$users['floor'].", офис ".$users['office_number'].", стол ".$users['number'];
+    $workplace=$users['department'].", этаж ".$users['floor'].", офис ".$users['office_number'].", рабочее место ".$users['number'];
     if ($users['department']=='' ||$users['floor']==''||$users['office_number']=='' || $users['number']=='')     
         $workplace='---';
     $phone_number = $users['phone_number'];
