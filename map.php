@@ -9,6 +9,16 @@
     <link REL=stylesheet HREF="css/map/to_book_wp_popup.css" TYPE="text/css">      
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script src="https://kit.fontawesome.com/3097d0fe75.js" crossorigin="anonymous"></script> 
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+    <script>
+        $( function() {
+            $( "#datepicker" ).datepicker();
+        } );
+    </script>    
+
     <title>Карта</title>
 </head>
 <body>
@@ -39,7 +49,7 @@
             <!--WRITE CODE HERE -->
             <div class="wrap_part"></div>
             <!-- add new booking -->
-            <div id="popupWorkplaceBook" class="popup">
+            <div id="popupWorkplaceBookInfo" class="popup">
                 <div class="popup_body">
                     <div class="popup_content"> 
                         <div class="popup_text"> 
@@ -48,7 +58,7 @@
                                 <p class="workplace_location_info"></p> 
                                 <p class="wp_info workplace_specification_info"></p> 
                                 <p class="wp_info workplace_curr_user_info"></p>  
-                                <p class="wp_info history_table_label"><span>История бронирования</span></p> 
+                                <p class="wp_info history_table_label"><span id="history_label_span">История бронирования</span></p> 
                                 <div class=wrap_table>    
                                     <table>
                                         <tr class="table_header" id="table_header">                                        
@@ -58,8 +68,24 @@
                                         </tr>       
                                         <tbody id="booking_list"></tbody>         
                                     </table>     
-                                </div>                          
-                                <button class="btn-save" id="btn_to_book_wp">Забронировать</button>                                                                                 
+                                </div>    
+                                <a href="#popupNewBookingWP" class="popup-link">
+                                    <button class="btn-save" id="btn_to_book_wp">Забронировать</button> 
+                                </a>                                                                         
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>  
+            <div id="popupNewBookingWP" class="popup">
+                <div class="popup_body">
+                    <div class="popup_content date"> 
+                        <div class="popup_text"> 
+                            <form class="edit_form" method="post" enctype="multipart/form-data">    
+                                <p><label class="edit_hint">Дата начала: </label><input class="form-control" name="start_date" id="start_date"></p>                                   
+                                <p><label class="edit_hint">Дата конца: </label><input class="form-control" name="end_date" id="end_date"></p>                                   
+                                <!-- <input type="text" id="datepicker2" class="form-control" name="end_date"> -->
+                                <button class="btn-save date" id="btn_to_add_new_book_wp">Добавить бронь</button>    
                             </form>
                         </div>
                     </div>

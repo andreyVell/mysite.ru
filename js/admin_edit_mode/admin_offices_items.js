@@ -32,6 +32,17 @@ function getOfficeItems()
         deleteIcon.classList.add('fa-trash-can');
         deleteButton.setAttribute('onclick','deleteItem(' + office_list[i][[0]] + ')');
         deleteButton.appendChild(deleteIcon);
+
+        let editMapButton = button.cloneNode(false);
+        let editMapIcon = icon.cloneNode(false);
+        editMapIcon.classList.add('fa-solid');
+        editMapIcon.classList.add('fa-map-location-dot');
+        editMapButton.setAttribute('onclick','displayEditMap(' + office_list[i][[0]] + ')');
+        editMapButton.appendChild(editMapIcon);
+        let editMapA=a.cloneNode(false);
+        editMapA.classList.add('popup-link');
+        editMapA.href='#popupWpMapEdit';
+        editMapA.appendChild(editMapButton);
         
         let editA = a.cloneNode(false);
         //задаём свой-ва editA
@@ -62,16 +73,21 @@ function getOfficeItems()
         td1.classList.add('delete-btn');   
         td1.classList.add('btn-column'); 
 
+        let td2 = tr.insertCell(2);
+        td2.appendChild(editMapA);        
+        td2.classList.add('editMap-btn');   
+        td2.classList.add('btn-column'); 
+
         
 
-        let td2 = tr.insertCell(2);
-        td2.appendChild(idNode);
-
         let td3 = tr.insertCell(3);
-        td3.appendChild(floorNode);
+        td3.appendChild(idNode);
 
         let td4 = tr.insertCell(4);
-        td4.appendChild(numberNode);
+        td4.appendChild(floorNode);
+
+        let td5 = tr.insertCell(5);
+        td5.appendChild(numberNode);
     }
 }
 
@@ -122,5 +138,145 @@ function displayEditForm(id)
         },
         contentType: 'application/x-www-form-urlencoded; charset=UTF-8'
         });
+    
+}
+
+const tBody = document.querySelector('.wrap_part');
+function displayEditMap(id)
+{
+    //alert('id = '+id);
+    while (tBody.firstChild) {
+        tBody.removeChild(tBody.firstChild);
+    }    
+    //сразу добавляем div в tBody
+    let divMain=document.createElement('div');
+    divMain.classList.add('scroll');
+    divMain.id="wrap_map_area";
+    tBody.appendChild(divMain);
+    //сначала получаем всю инфу об офисе через id 
+    var newOfficeData = new FormData();
+    newOfficeData.append("id", id); 
+    var curOfficeInfo;    
+    $.ajax({
+        type: "POST",
+        url: '/../../php/admin_edit_mode/admin_get_offices_placeholderInfo.php',
+        data: newOfficeData,        
+        async: false,
+        cache: false,
+        processData: false,
+        success: function (result) { 
+            curOfficeInfo=JSON.parse(result);
+        },
+        error: function (result) { alert(JSON.parse(result));
+        },
+        contentType: false,
+    });    
+    var curId =curOfficeInfo[0];
+    var curFloor=curOfficeInfo[1];
+    var curNumber=curOfficeInfo[2];         
+    var curImage = curOfficeInfo[3]; 
+
+    //рисуем карту на бг
+    let img = document.createElement('img');
+    img.src=curImage;
+    img.classList.add('scheme_img');
+    img.zoom="100%"
+    divMain.appendChild(img);
+    divMain.style.marginTop='0px'
+    //zoom in/out
+    let zoomInIcon = document.createElement('i');
+    zoomInIcon.classList.add('fa-solid');
+    zoomInIcon.classList.add('fa-magnifying-glass-plus');
+    let zoomInButtom = document.createElement('button');
+    zoomInButtom.classList.add('zoomInButton');
+    zoomInButtom.appendChild(zoomInIcon);
+    zoomInButtom.setAttribute('onclick','zoomIn()');
+    zoomInButtom.addEventListener('click', function () {
+        event.preventDefault(); // Убираем событие отправки формы (убираем перезагрузку страницы) 
+    });
+    document.querySelector(".wrap_part").appendChild(zoomInButtom);
+
+    let zoomOutIcon = document.createElement('i');
+    zoomOutIcon.classList.add('fa-solid');
+    zoomOutIcon.classList.add('fa-magnifying-glass-minus');
+    let zoomOutButtom = document.createElement('button');
+    zoomOutButtom.classList.add('zoomOutButton');
+    zoomOutButtom.appendChild(zoomOutIcon);
+    zoomOutButtom.setAttribute('onclick','zoomOut()');
+    zoomOutButtom.addEventListener('click', function () {
+        event.preventDefault(); // Убираем событие отправки формы (убираем перезагрузку страницы) 
+    });
+    document.querySelector(".wrap_part").appendChild(zoomOutButtom);
+    
+    
+    //получаем всю инфу об рабочих местах в этом офисе
+    var newCurWorkplacesData = new FormData();
+    newCurWorkplacesData.append("id", curId); 
+    var curOfficeWorkplacesInfo;    
+    $.ajax({
+        type: "POST",
+        url: '/../../php/map/map_get_workplaces_in_cur_office.php',
+        data: newCurWorkplacesData,        
+        async: false,
+        cache: false,
+        processData: false,
+        success: function (result) { 
+            curOfficeWorkplacesInfo=JSON.parse(result);            
+        },
+        error: function (result) { alert(JSON.parse(result));
+        },
+        contentType: false,
+    });    
+    
+    //рисуем столы curOfficeWorkplacesInfo
+    curOfficeWorkplacesInfo.forEach(element => {
+        let workplace_object=document.createElement('div');
+        workplace_object.classList.add('workplace_object');
+        if (element[8]==1)
+                workplace_object.classList.add('permanently');
+            else
+            if (element[4]==1)
+                workplace_object.classList.add('notfree');
+            else            
+                workplace_object.classList.add('free');
+        workplace_object.innerHTML=element[1];
+        workplace_object.style.top=element[6];
+        workplace_object.style.left=element[7];
+        workplace_object.setAttribute('onclick','displayBookingPopup('+element[0]+')');
+        workplace_object.classList.add('popup-link');
+
+        let aWPPopup = document.createElement('a');
+        aWPPopup.classList.add('popup-link');
+        aWPPopup.href = '#popupWorkplaceBookInfo';
+        aWPPopup.appendChild(workplace_object);
+        
+        divMain.appendChild(aWPPopup);
+    });  
+    //для удобства изначальный зум
+    document.getElementById("wrap_map_area").style.zoom="50%"; 
+    //чтобы popup работал
+}
+
+const zoomDelta=5;
+function zoomIn()
+{
+    let curArea = document.getElementById("wrap_map_area");    
+    let curZoom = Number(curArea.style.zoom.slice(0, -1));
+    if (curZoom==0)
+        curZoom=100;
+    let newZoom = curZoom+zoomDelta;
+    curArea.style.zoom=newZoom+"%";
+}
+function zoomOut()
+{
+    let curArea = document.getElementById("wrap_map_area"); 
+    let curZoom = Number(curArea.style.zoom.slice(0, -1));
+    if (curZoom==0)
+        curZoom=100;
+    if (curZoom-zoomDelta>0)
+        {
+            let newZoom = curZoom-zoomDelta;
+            curArea.style.zoom=newZoom+"%";
+        }
     
 }

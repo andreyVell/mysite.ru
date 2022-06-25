@@ -53,6 +53,7 @@
                                 <tr class="table_header" id="table_header_offices">
                                     <td class="btn-column"></td>
                                     <td class="btn-column"></td>
+                                    <td class="btn-column"></td>
                                     <td >№</td>
                                     <td >Этаж</td>
                                     <td >Номер</td>
@@ -60,13 +61,24 @@
                                 <tbody id="office_list"></tbody>                             
                             </table>
                         </div>
-                        <script src="js/admin_edit_mode/admin_offices_items.js"></script>
-                        <script type="text/javascript">getOfficeItems();</script>                        
+                                              
                         <a href="#popupOfficeAdd" class="popup-link">
                             <form class="form_add_office popup-link" method="post" action="#popupOfficeAdd">
                                 <button class="button_add_office btn-add popup-link" type="submit">Добавить</button>
                             </form> 
                         </a>
+                        <!-- workplaces edit -->
+                        <div id="popupWpMapEdit" class="popup">
+                            <div class="popup_body">
+                                <div class="popup_content"> 
+                                    <div class="popup_text"> 
+                                        <form class="add_new_form" method="post" enctype="multipart/form-data"> 
+                                            <div class="wrap_part"></div>                                                                             
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>  
                         <!--add new -->
                         <div id="popupOfficeAdd" class="popup">
                             <div class="popup_body">
@@ -108,6 +120,9 @@
                             </div>
                         </div>  
                         <script src="js/admin_edit_mode/admin_save_edited_office.js"></script>
+                        <!-- fill office table -->
+                        <script src="js/admin_edit_mode/admin_offices_items.js"></script>
+                        <script type="text/javascript">getOfficeItems();</script> 
                     </div>                    
                 </div>
                 <div class="tab-2">

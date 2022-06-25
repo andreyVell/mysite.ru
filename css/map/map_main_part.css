@@ -101,6 +101,7 @@
 
 .scheme_img{
     /* border: 3px solid black; */
+    pointer-events: none;
 }
 
 .zoomInButton {
@@ -178,6 +179,13 @@
 }
 
 .workplace_object.notfree {
+    border: 5px solid #f48600;
+    color: #f48600;
+}
+
+.workplace_object.permanently {
     border: 5px solid #FF0000;
     color: #FF0000;
 }
+
+
