@@ -26,6 +26,8 @@ function getItems()
         tHeader.removeChild(tHeader.firstChild);        
         tHeader.removeChild(tHeader.firstChild);
         tHeader.removeChild(tHeader.firstChild);
+        tHeader.removeChild(tHeader.firstChild);
+        tHeader.removeChild(tHeader.firstChild);
     }
     const tBody = document.getElementById('staff_list');
     //очищаем таблицу перед созданием
@@ -67,6 +69,13 @@ function getItems()
         deleteButton.setAttribute('onclick','deleteItem(' + staff_list[i][[0]] + ')');
         deleteButton.appendChild(deleteIcon);
 
+        let bookingButton = button.cloneNode(false);
+        let bookingIcon = icon.cloneNode(false);
+        bookingIcon.classList.add('fa-solid');
+        bookingIcon.classList.add('fa-receipt');
+        bookingButton.setAttribute('onclick','openBookingHistory(' + staff_list[i][[0]] + ')');
+        bookingButton.appendChild(bookingIcon);
+
         let idNode = document.createTextNode(staff_list[i][0]);
         let last_nameNode = document.createTextNode(staff_list[i][2]);
         let first_nameNode = document.createTextNode(staff_list[i][3]);
@@ -81,7 +90,7 @@ function getItems()
             workplaceNode = document.createTextNode("Этаж "+staff_list[i][10]+", офис "+staff_list[i][11]+", стол "+staff_list[i][12]);
         let tr = tBody.insertRow();
         tr.classList.add('table_cell');
-        let cellindex = -2;
+        let cellindex = -3;
         if (curr_role ==1 )
         {
             let td0 = tr.insertCell(0);
@@ -91,32 +100,37 @@ function getItems()
             let td1 = tr.insertCell(1);
             td1.appendChild(deleteButton);        
             td1.classList.add('delete-btn');
+
+            let td2 = tr.insertCell(2);
+            td2.appendChild(bookingButton);        
+            td2.classList.add('booking-btn');
+
             cellindex=0;
         }
 
-        let td2 = tr.insertCell(2 + cellindex);
-        td2.appendChild(idNode);
-
         let td3 = tr.insertCell(3 + cellindex);
-        td3.appendChild(last_nameNode);
+        td3.appendChild(idNode);
 
         let td4 = tr.insertCell(4 + cellindex);
-        td4.appendChild(first_nameNode);
+        td4.appendChild(last_nameNode);
 
         let td5 = tr.insertCell(5 + cellindex);
-        td5.appendChild(patronymicNode);
+        td5.appendChild(first_nameNode);
 
         let td6 = tr.insertCell(6 + cellindex);
-        td6.appendChild(departmentNode);
+        td6.appendChild(patronymicNode);
 
         let td7 = tr.insertCell(7 + cellindex);
-        td7.appendChild(workplaceNode);
+        td7.appendChild(departmentNode);
 
         let td8 = tr.insertCell(8 + cellindex);
-        td8.appendChild(phone_numberNode);
+        td8.appendChild(workplaceNode);
 
         let td9 = tr.insertCell(9 + cellindex);
-        td9.appendChild(emailNode);
+        td9.appendChild(phone_numberNode);
+
+        let td10 = tr.insertCell(10 + cellindex);
+        td10.appendChild(emailNode);
     }
 }
 
@@ -192,4 +206,10 @@ function displayEditForm(id)
         contentType: 'application/x-www-form-urlencoded; charset=UTF-8'
         });
     
+}
+
+function openBookingHistory(userID)
+{
+    //alert("id = "+userID);
+    popupOpen(document.getElementById('popupCurUserBookingHistory'));
 }

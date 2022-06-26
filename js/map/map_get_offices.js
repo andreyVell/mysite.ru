@@ -236,8 +236,16 @@ function displayBookingPopup(id)
             for (var i =0;i<curInfo.length;i++)
             {
                 let nameNode = document.createTextNode(curInfo[i][1]+' '+curInfo[i][0]+' '+curInfo[i][2]);
-                let startDateNode = document.createTextNode(curInfo[i][3]);
-                let endDateNode = document.createTextNode(curInfo[i][4]);
+                var startDateNode;
+                if (curInfo[i][3][0]!='3')
+                    startDateNode = document.createTextNode(curInfo[i][3]);
+                else
+                    startDateNode = document.createTextNode("Перманентно");
+                var endDateNode;
+                if (curInfo[i][4][0]!='3')
+                    endDateNode = document.createTextNode(curInfo[i][4]);
+                else
+                    endDateNode = document.createTextNode("Перманентно");
                 let tr = tBody.insertRow();                
                 tr.classList.add('table_cell');
                 //если дата текущая то 
@@ -262,24 +270,36 @@ function displayBookingPopup(id)
         },
         contentType: 'application/x-www-form-urlencoded; charset=UTF-8'
         });
-    //if данный комп IsPermanently то не отображаем кнопку забронировать и таблицу + надпись история бронирования
+    var IsCurUserHavePerm;
+    //если у пользователя на текущий момент есть перманентная бронь то не отображаем кнопку забронировать
+    $.ajax({
+        type: "POST",
+        url: '/../../php/map/is_cur_user_have_current_perm_booking.php',  
+        async: false,      
+        success: function (result) {            
+            var curWPInfo = JSON.parse(result);    
+            IsCurUserHavePerm= curWPInfo[0];    
+        },
+        error: function (result) {
+            alert('error');
+        },
+        contentType: 'application/x-www-form-urlencoded; charset=UTF-8'
+        });
+    //if данный комп IsPermanently то не отображаем кнопку забронировать
     $.ajax({
         type: "POST",
         url: '/../../php/admin_edit_mode/admin_get_workplaces_placeholderInfo.php',
+        async: false, 
         data: {'id':id},
         success: function (result) {            
             var curWPInfo = JSON.parse(result); 
-            if (curWPInfo[8]==1)
-            {        
-                document.getElementById('history_label_span').style.display = 'none';
-                document.querySelector('.wrap_table').style.display = 'none';
+            if (curWPInfo[8]==1 || IsCurUserHavePerm==1)
+            {                        
                 document.getElementById('btn_to_book_wp').style.display = 'none';
                 document.querySelector('.popup_content').style.paddingBottom="0px";
             }
             else
             {                   
-                document.getElementById('history_label_span').style.display = 'inline';
-                document.querySelector('.wrap_table').style.display = 'inline';
                 document.getElementById('btn_to_book_wp').style.display = 'inline';
                 document.querySelector('.popup_content').style.paddingBottom="35px";
             }
@@ -289,6 +309,7 @@ function displayBookingPopup(id)
         },
         contentType: 'application/x-www-form-urlencoded; charset=UTF-8'
         });
+    
     var curUser = document.querySelector('.workplace_curr_user_info');     
 }
 

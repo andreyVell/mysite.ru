@@ -24,24 +24,7 @@
         WHERE staff.login='$login'
         GROUP BY staff.id"); 
     $users = $sqlResult->fetch_array();
-    $sqlResult = $mysql->query("
-    SELECT
-	    booking_list.id,
-        offices.floor,
-        offices.office_number,
-        workplaces.number,
-        booking_list.start_time,
-        booking_list.end_time
-    FROM 
-	    `booking_list`         
-        LEFT JOIN `workplaces` ON workplaces.id = booking_list.workplaсe_id
-        LEFT JOIN `offices` ON offices.id = booking_list.workplaсe_id
-        WHERE booking_list.staff_id = (SELECT staff.id FROM staff WHERE staff.login = '$login')
-    ORDER BY booking_list.id");
-    $mysql->close();
-    $rows = mysqli_fetch_all($sqlResult, MYSQLI_ASSOC);
-
-
+    
     $id = $users['id'];
     $avatar =$users['image'];
     $name=$users['last_name']." ".$users['first_name']." ".$users['patronymic'];

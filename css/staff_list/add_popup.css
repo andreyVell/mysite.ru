@@ -4,6 +4,7 @@
     height: 100%;
     top: 0;
     left: 0;
+    z-index: 100;
     opacity: 0;
     visibility: hidden;
     overflow-y: auto;
@@ -20,6 +21,7 @@
 .popup_body { /*настройка фона и расположения*/
     min-height: 100%;
     display: flex;
+    z-index: 100;
     align-items: center;
     justify-content: center;
     background-color: rgba(0, 0, 0, 0.5);
@@ -38,11 +40,37 @@
     font-family: 'Montserrat', sans-serif;
     font-weight: 100;
     float: left;
+    z-index: 100;
     color: black;
     font-size: 22px;
     text-align: left;
 }
 
+.popup_content.BookingHistory {
+    background-color: #E9ECEE;
+    border-radius: 15px;
+    min-width: 500px;
+    min-height: 500px;
+    z-index: 100;
+    padding-bottom: 45px;
+    position: relative;
+    text-align: center;
+    padding-left: 15px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 100;
+    float: left;
+    color: black;
+    font-size: 22px;
+    text-align: left;
+}
+.wrap_table.BookingHistory {    
+    position: relative;
+    width: 97%;
+    max-width: 97%;
+    max-height: 500px;
+    overflow-x: auto;
+    overflow-y: auto;
+  }
 .form-control {
     float: right;
     margin-top: 5px;

@@ -31,20 +31,7 @@ function getWorkplaceItems()
         deleteIcon.classList.add('fa-regular');
         deleteIcon.classList.add('fa-trash-can');
         deleteButton.setAttribute('onclick','deleteItemWorkplace(' + workplaces_list[i][0] + ')');
-        deleteButton.appendChild(deleteIcon);
-        
-        let editA = a.cloneNode(false);
-        //задаём свой-ва editA
-        editA.classList.add('popup-link');
-        //editA.href='#popupWorkPlaceEdit';  //<-- ГЛАВНЕЕ ДЛЯ ОТКРЫТИЯ ПОПАПА (открываю вручную в displayEditFormWorkplace)
-        let editForm = form.cloneNode(false);
-        //задаём свой-ва editForm
-        editForm.classList.add('popup-link');
-        //editForm.action='#popupWorkPlaceEdit';
-        //задаём сво-ства editButton
-        editButton.classList.add('popup-link');
-        editForm.appendChild(editButton);
-        editA.appendChild(editForm);
+        deleteButton.appendChild(deleteIcon);         
 
         let idNode = document.createTextNode(workplaces_list[i][0]);
         let floorNode = document.createTextNode(workplaces_list[i][1]);
@@ -59,7 +46,7 @@ function getWorkplaceItems()
         tr.classList.add('table_cell');        
         
         let td0 = tr.insertCell(0);
-        td0.appendChild(editA);
+        td0.appendChild(editButton);
         td0.classList.add('edit-btn');
         td0.classList.add('btn-column');
         
@@ -110,7 +97,7 @@ function deleteItemWorkplace(id)
 function displayEditFormWorkplace(id)
 {
     //получить все згначения Placeholdera для текущего IDc
-    var curInfo;     
+    var curInfo;        
     displayAddWorkplaceForm("location_edit");
     $.ajax({
         type: "POST",
@@ -134,5 +121,5 @@ function displayEditFormWorkplace(id)
         },
         contentType: 'application/x-www-form-urlencoded; charset=UTF-8'
         });
-    
+    popupOpen(document.getElementById('popupWorkPlaceEdit'));
 }

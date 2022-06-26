@@ -44,6 +44,7 @@
                     <tr class="table_header" id="table_header">
                         <th ></th>
                         <th ></th>
+                        <th ></th>
                         <th >№</th>
                         <th >Фамилия</th>
                         <th >Имя</th>
@@ -55,7 +56,29 @@
                     </tr>       
                     <tbody id="staff_list"></tbody>         
                 </table>
-            </div>      
+            </div>
+            <!--current user booking history -->
+            <div id="popupCurUserBookingHistory" class="popup">
+                    <div class="popup_body">
+                        <div class="popup_content BookingHistory"> 
+                            <div>
+                                <div class="wrap_table BookingHistory">
+                                    <table>
+                                        <tr class="table_header">
+                                            <td class="btn-column"></td>
+                                            <td class="btn-column"></td>
+                                            <td >№</td>
+                                            <td >Расположение</td>
+                                            <td >Начало</td>
+                                            <td >Конец</td>
+                                        </tr>
+                                        <tbody id="account_booking_list"></tbody>                                
+                                    </table>
+                                </div>                        
+                            </div>
+                        </div>
+                    </div>
+                </div>        
             <script src="js/staff_list/table_items.js"></script>
             <script type="text/javascript">getItems();</script>
             <?php

@@ -21,7 +21,7 @@
     setcookie('userNotFound','none', time()-30, "/");  
 
     setcookie('newUser',$users['login'], time()+15*60, "/");
-    
+    require __DIR__."/../database/dateCheck.php";
 
     header('Location: /');
 ?>

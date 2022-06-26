@@ -10,6 +10,15 @@
     <link REL=stylesheet HREF="css/account/popup.css" TYPE="text/css">     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script src="https://kit.fontawesome.com/3097d0fe75.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+    <script>
+        $( function() {
+            $( "#datepicker" ).datepicker();
+        } );
+    </script>    
     <title>Личный кабинет</title>
 </head>
 <body>
@@ -84,38 +93,46 @@
                                 </div>
                             </div>
                         </div>  
-                        <script src="js/popups.js"></script>
                         <script src="js/account/save_edited_info_account.js"></script>
                     </div>
                 </div>
                 <div class="tab-2">
                     <label for="tab2-2">История бронирования</label>
                     <input id="tab2-2" name="tabs-two" type="radio">
-                    <div class=wrap_table>
-                        <table>
-                            <tr class="table_header">
-                                <td >№</td>
-                                <td >Расположение</td>
-                                <!-- <td >Номер рабочего места</td> -->
-                                <td >Начало</td>
-                                <td >Конец</td>
-                            </tr>
-
-                            <?php
-                            foreach ($rows as $row) {
-                                ?>
-                                    <tr class="table_cell">
-                                        <td><?php echo $row['id'];?></td>
-                                        <td><?php echo "Этаж ".$row['floor'].", офис ".$row['office_number'].", стол ".$row['number'];?></td>
-                                        <!-- <td><?php //echo $row['number'];?></td> -->
-                                        <td><?php echo $row['start_time'];?></td>                                
-                                        <td><?php echo $row['end_time'];?></td>
-                                    </tr>
-                            <?php   }?>
-                        </table>
+                    <div>
+                        <div class=wrap_table>
+                            <table>
+                                <tr class="table_header">
+                                    <td class="btn-column"></td>
+                                    <td class="btn-column"></td>
+                                    <td >№</td>
+                                    <td >Расположение</td>
+                                    <td >Начало</td>
+                                    <td >Конец</td>
+                                </tr>
+                                <tbody id="account_booking_list"></tbody>                                
+                            </table>
+                        </div>                        
                     </div>
                 </div>
             </div>
+            <div id="popupEditBookingUser" class="popup">
+                <div class="popup_body">
+                    <div class="popup_content date"> 
+                        <div class="popup_text"> 
+                            <form class="edit_form" method="post" enctype="multipart/form-data">    
+                                <p><label class="edit_hint">Дата начала: </label><input class="form-control" name="start_date" id="start_date"></p><br>                             
+                                <p><label class="edit_hint">Дата конца: </label><input class="form-control" name="end_date" id="end_date"></p>                                   
+                                
+                                <button class="btn-save date" id="btn_to_add_new_book_wp">Сохранить</button>    
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+            <script src="js/popups.js"></script>
+            <script src="js/account/account_booking_items.js"></script>
+            <script type="text/javascript">getAccountBookingItems();</script>
         </div>                      
     </div>
 </body>
