@@ -42,7 +42,15 @@
             </form>
         </div> 
         <div id="rectangle" class="main_part">
-            <!--WRITE CODE HERE -->   
+            <!--WRITE CODE HERE --> 
+            <!-- workplaces edit -->
+            <div id="popupWpMapEdit" class="popup">
+                <div class="popup_body">
+                    <div class="popup_content" id="map_edit_main_area">                                         
+                        <div class="wrap_part edit_mode"></div>  
+                    </div>
+                </div>
+            </div>    
             <div class="tabs">
                 <div class="tab-2">
                     <label for="tab2-1">Офисы</label>
@@ -60,25 +68,12 @@
                                 </tr>  
                                 <tbody id="office_list"></tbody>                             
                             </table>
-                        </div>
-                                              
+                        </div>                                              
                         <a href="#popupOfficeAdd" class="popup-link">
                             <form class="form_add_office popup-link" method="post" action="#popupOfficeAdd">
                                 <button class="button_add_office btn-add popup-link" type="submit">Добавить</button>
                             </form> 
-                        </a>
-                        <!-- workplaces edit -->
-                        <div id="popupWpMapEdit" class="popup">
-                            <div class="popup_body">
-                                <div class="popup_content"> 
-                                    <div class="popup_text"> 
-                                        <form class="add_new_form" method="post" enctype="multipart/form-data"> 
-                                            <div class="wrap_part"></div>                                                                             
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>  
+                        </a>                        
                         <!--add new -->
                         <div id="popupOfficeAdd" class="popup">
                             <div class="popup_body">
@@ -155,7 +150,7 @@
                                 <div class="popup_content"> 
                                     <div class="popup_text"> 
                                         <form class="add_new_form" method="post" enctype="multipart/form-data">  
-                                            <p><label class="edit_hint">Расположение:</label><select class="form-control" name="location" id="location"><option disabled>Выберите офис</option></select></p><br>                                                                                     
+                                            <p><label class="edit_hint">Расположение:</label><select class="form-control" name="location" id="location"></select></p><br>                                                                                     
                                             <p><label class="edit_hint">Спецификация:</label><input type="text" class="form-control" name="specifications" id="specifications" ></p><br>                                   
                                             <p><label class="edit_hint">Номер стола:</label><input type="text" class="form-control" name="wp_number" id="wp_number" ></p><br>                                   
                                             <button class="btn-save" id="btn_add_new_workplace">Сохранить</button>                                                                                 
@@ -173,7 +168,7 @@
                                     <div class="popup_text"> 
                                         <form class="edit_form" method="post" enctype="multipart/form-data">    
                                             <div id="current_workplace_id_for_edit" name='gg'></div>                                           
-                                            <p><label class="edit_hint">Расположение:</label><select class="form-control" name="location_edit" id="location_edit"><option disabled>Выберите офис</option></select></p><br>                                                                                     
+                                            <p><label class="edit_hint">Расположение:</label><select class="form-control" name="location_edit" id="location_edit"></select></p><br>                                                                                     
                                             <p><label class="edit_hint">Спецификация:</label><input type="text" class="form-control" name="specifications_edit" id="specifications_edit" ></p><br>                                   
                                             <p><label class="edit_hint">Номер стола:</label><input type="text" class="form-control" name="wp_number_edit" id="wp_number_edit" ></p><br>                                   
                                             <button class="btn-save" id="btn_edit_workplace">Сохранить</button>                                                                                 

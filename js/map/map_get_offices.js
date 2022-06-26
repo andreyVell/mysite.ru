@@ -75,9 +75,9 @@ function displayBooking(id)
     let img = document.createElement('img');
     img.src=curImage;
     img.classList.add('scheme_img');
-    img.zoom="100%"
+    img.zoom="100%";    
     divMain.appendChild(img);
-    divMain.style.marginTop='0px'
+    divMain.style.marginTop='0px';
     //zoom in/out
     let zoomInIcon = document.createElement('i');
     zoomInIcon.classList.add('fa-solid');

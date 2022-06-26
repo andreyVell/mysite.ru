@@ -36,11 +36,11 @@ function getWorkplaceItems()
         let editA = a.cloneNode(false);
         //задаём свой-ва editA
         editA.classList.add('popup-link');
-        editA.href='#popupWorkPlaceEdit';  //<-- ГЛАВНЕЕ ДЛЯ ОТКРЫТИЯ ПОПАПА
+        //editA.href='#popupWorkPlaceEdit';  //<-- ГЛАВНЕЕ ДЛЯ ОТКРЫТИЯ ПОПАПА (открываю вручную в displayEditFormWorkplace)
         let editForm = form.cloneNode(false);
         //задаём свой-ва editForm
         editForm.classList.add('popup-link');
-        editForm.action='#popupWorkPlaceEdit';
+        //editForm.action='#popupWorkPlaceEdit';
         //задаём сво-ства editButton
         editButton.classList.add('popup-link');
         editForm.appendChild(editButton);
@@ -116,18 +116,18 @@ function displayEditFormWorkplace(id)
         type: "POST",
         url: '/../php/admin_edit_mode/admin_get_workplaces_placeholderInfo.php',
         data: {'id':id},
-        success: function (result) {            
+        success: function (result) {   
             curInfo = JSON.parse(result);
             var curId =curInfo[0];
             var officeId = curInfo[5];
             var specification = curInfo[2];
             var number = curInfo[1];
-                        
             //подогнать значения placeholdera под текущий ID
             document.getElementById('current_workplace_id_for_edit').setAttribute('name', curId);
             document.getElementById("location_edit").value=officeId;
             document.getElementById('specifications_edit').placeholder=specification;
             document.getElementById('wp_number_edit').placeholder=number;
+            popupOpen(document.getElementById('popupWorkPlaceEdit'));
         },
         error: function (result) {
             alert('Error!');

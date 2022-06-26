@@ -17,11 +17,22 @@ function displayAddWorkplaceForm(elementId)
             office_list = JSON.parse(data);
         }
     }); 
-    //очищаем селект перед вставкой (кроме дефолтного значения выберите офис)    
-    for (let index =locationSelect.childNodes.length; index>1;index++)
-            locationSelect.removeChild(locationSelect.childNodes[index]);
+    //очищаем селект перед вставкой (кроме дефолтного значения выберите офис) 
+    while(locationSelect.firstChild)
+        locationSelect.removeChild(locationSelect.firstChild);
+    // if (locationSelect.childNodes.length>1)
+    //     for (let index =locationSelect.childNodes.length; index>1;index--)
+    //             {                    
+    //                 if (locationSelect.childNodes[index])
+    //                     locationSelect.removeChild(locationSelect.childNodes[index]);
+    //             }
     //формируем option и добавляем в select
-    const option = document.createElement('option');  
+    
+    const option = document.createElement('option');
+    let disOption = option.cloneNode(false);
+    disOption.innerHTML='Выберите офис';
+    disOption.disabled='1';
+    locationSelect.appendChild(disOption);
     for (var i =0;i<office_list.length;i++)
     {        
         let curOption = option.cloneNode(false);

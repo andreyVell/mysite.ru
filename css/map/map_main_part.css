@@ -20,21 +20,6 @@
     background-color: #323e50;
 }
 
-#mydiv {
-    position: absolute;
-    z-index: 9;
-    background-color: #f1f1f1;
-    border: 1px solid #d3d3d3;
-    text-align: center;
-}
-
-#mydivheader {
-    padding: 10px;
-    cursor: move;
-    z-index: 10;
-    background-color: #2196F3;
-    color: #fff;
-}
 
 .wrap_part {
     margin-top: 15px;
@@ -102,6 +87,12 @@
 .scheme_img{
     /* border: 3px solid black; */
     pointer-events: none;
+    -moz-user-select: none; 
+    -webkit-user-select: none; 
+    -ms-user-select: none; 
+    user-select: none;
+    -webkit-user-drag: none;
+    -webkit-touch-callout: none;
 }
 
 .zoomInButton {
@@ -158,7 +149,10 @@
     border: 5px solid black;
     /* box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3); */
     border-radius: 20px;
-
+    -moz-user-select: none; 
+    -webkit-user-select: none; 
+    -ms-user-select: none; 
+    user-select: none;
 
 
     font-family: 'Montserrat', sans-serif;

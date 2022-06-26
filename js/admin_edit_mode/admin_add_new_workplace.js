@@ -32,6 +32,9 @@ function addWorkplaceInfo()
             if (info=='Добавлено!') 
                 //обновляем страницу
                 getWorkplaceItems();
+                //location.reload();
+                displayEditMap(officeId);
+                popupOpen(document.getElementById('popupWpMapEdit'));
         },
         error: function (result) { alert(JSON.parse(result));
         },

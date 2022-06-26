@@ -103,3 +103,23 @@ select {
     text-align: center;
     line-height: 35px;
 }
+
+.wrap_part.edit_mode {
+    margin-top: 15px;
+    margin-left: 7px;
+    margin-right: 0px;
+    margin-bottom: 15px;
+    position: relative;
+    
+    min-width: 850px;
+    min-height: 550px;
+    max-width: 850px;
+    max-height: 550px;
+    overflow-x: auto;
+    overflow-y: auto;
+}
+
+
+.workplace_object.drag {
+    cursor: move;
+}

@@ -26,9 +26,11 @@ function saveWorkplaceInfo()
             alert(info);
             if (info=="Сохранено!")                
                 {
-                    //обновляем страницу
-                    location.reload();
-                    //getWorkplaceItems();
+                    //обновляем страницу                    
+                    getWorkplaceItems();
+                    //location.reload();
+                    displayEditMap(officeId);                    
+                    popupOpen(document.getElementById('popupWpMapEdit'));
                 }
 
         },

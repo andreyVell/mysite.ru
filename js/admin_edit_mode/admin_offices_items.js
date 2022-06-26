@@ -194,7 +194,7 @@ function displayEditMap(id)
     zoomInButtom.addEventListener('click', function () {
         event.preventDefault(); // Убираем событие отправки формы (убираем перезагрузку страницы) 
     });
-    document.querySelector(".wrap_part").appendChild(zoomInButtom);
+    document.getElementById("map_edit_main_area").appendChild(zoomInButtom);
 
     let zoomOutIcon = document.createElement('i');
     zoomOutIcon.classList.add('fa-solid');
@@ -206,7 +206,7 @@ function displayEditMap(id)
     zoomOutButtom.addEventListener('click', function () {
         event.preventDefault(); // Убираем событие отправки формы (убираем перезагрузку страницы) 
     });
-    document.querySelector(".wrap_part").appendChild(zoomOutButtom);
+    document.getElementById("map_edit_main_area").appendChild(zoomOutButtom);
     
     
     //получаем всю инфу об рабочих местах в этом офисе
@@ -232,6 +232,7 @@ function displayEditMap(id)
     curOfficeWorkplacesInfo.forEach(element => {
         let workplace_object=document.createElement('div');
         workplace_object.classList.add('workplace_object');
+        workplace_object.classList.add('drag');
         if (element[8]==1)
                 workplace_object.classList.add('permanently');
             else
@@ -242,15 +243,8 @@ function displayEditMap(id)
         workplace_object.innerHTML=element[1];
         workplace_object.style.top=element[6];
         workplace_object.style.left=element[7];
-        workplace_object.setAttribute('onclick','displayBookingPopup('+element[0]+')');
-        workplace_object.classList.add('popup-link');
-
-        let aWPPopup = document.createElement('a');
-        aWPPopup.classList.add('popup-link');
-        aWPPopup.href = '#popupWorkplaceBookInfo';
-        aWPPopup.appendChild(workplace_object);
-        
-        divMain.appendChild(aWPPopup);
+        dragElement(workplace_object,element[0]);
+        divMain.appendChild(workplace_object);
     });  
     //для удобства изначальный зум
     document.getElementById("wrap_map_area").style.zoom="50%"; 
@@ -279,4 +273,64 @@ function zoomOut()
             curArea.style.zoom=newZoom+"%";
         }
     
+}
+
+function dragElement(elmnt,id) {   
+    var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+    if (document.getElementById(elmnt.id)) {
+        /* if present, the header is where you move the DIV from:*/
+        document.getElementById(elmnt.id).onmousedown = dragMouseDown;
+    } else {
+        /* otherwise, move the DIV from anywhere inside the DIV:*/
+        elmnt.onmousedown = dragMouseDown;
+    }
+
+    function dragMouseDown(e) {
+        e = e || window.event;
+        // get the mouse cursor position at startup:
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+        document.onmouseup = closeDragElement;
+        // call a function whenever the cursor moves:
+        document.onmousemove = elementDrag;
+    }
+
+    function elementDrag(e) {
+        e = e || window.event;
+        // calculate the new cursor position:
+        pos1 = pos3 - e.clientX;
+        pos2 = pos4 - e.clientY;
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+        // set the element's new position:
+        let curZoom = Number(document.getElementById("wrap_map_area").style.zoom.slice(0, -1));
+        elmnt.style.top = (elmnt.offsetTop - pos2*(100/curZoom)) + "px";
+        elmnt.style.left = (elmnt.offsetLeft - pos1*(100/curZoom)) + "px";
+    }
+
+    function closeDragElement() {
+        /* stop moving when mouse button is released:*/
+        document.onmouseup = null;
+        document.onmousemove = null;
+        //save end position
+        //alert(elmnt.style.top);
+        //alert(elmnt.style.left);
+        var newWorkplacesXY = new FormData();
+        newWorkplacesXY.append("id", id); 
+        newWorkplacesXY.append("top", elmnt.style.top); 
+        newWorkplacesXY.append("left", elmnt.style.left); 
+        $.ajax({
+            type: "POST",
+            url: '/../../php/admin_edit_mode/admin_save_new_wp_location.php',
+            data: newWorkplacesXY,        
+            async: false,
+            cache: false,
+            processData: false,
+            success: function (result) { 
+            },
+            error: function (result) { alert(JSON.parse(result));
+            },
+            contentType: false,
+        });   
+    }
 }

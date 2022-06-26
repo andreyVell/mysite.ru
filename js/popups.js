@@ -42,7 +42,7 @@ function popupOpen(currentPopup)
         const popupActive = document.querySelector(".popup.open");
         if (popupActive)
         {
-            popupCloseIcon(popupActive, false);
+            popupClose(popupActive);
         }        
         
         currentPopup.classList.add('open');
