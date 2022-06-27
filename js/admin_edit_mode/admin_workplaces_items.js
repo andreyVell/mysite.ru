@@ -54,7 +54,6 @@ function getWorkplaceItems()
         td1.appendChild(deleteButton);        
         td1.classList.add('delete-btn');   
         td1.classList.add('btn-column'); 
-
         
 
         let td2 = tr.insertCell(2);

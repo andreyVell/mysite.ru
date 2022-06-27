@@ -18,7 +18,6 @@
             $( "#datepicker" ).datepicker();
         } );
     </script>    
-
     <title>Карта</title>
 </head>
 <body>
@@ -109,9 +108,12 @@
                 if ($currentRole ==  1): ?>   <!--admin-->   
                     <a href="admin_editing_mode.php" class="" id="admin_edit_button">
                     <form class="" action="admin_editing_mode.php">
-                        <button class="button_edit_mode_switch">Редактирование</button>
-                    </form> 
-                </a> 
+                        <button class="button_edit_mode_switch map">Редактирование</button>
+                    </form>                     
+                    </a> 
+                    <button class="button_export_data" id='button_export_data'>Выгрузить</button>                    
+                    <script src="xlsExport/xls-export.js"></script>
+                    <script src="js/map/export_data.js"></script>
                 <?php endif;
 
                 

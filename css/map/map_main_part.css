@@ -20,6 +20,31 @@
     background-color: #323e50;
 }
 
+.button_edit_mode_switch.map{
+    width: 19%;
+    left: 30%; 
+}
+
+.button_export_data {
+    z-index: 1;
+    position: absolute;
+    bottom: 5%;
+    left: 51%;    
+    text-align: center; 
+    width: 19%;
+    border: 0;
+    border-radius: 15px;
+    color: white;
+    background-color: #485973;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 100;
+    font-size: 20px;
+    line-height: 43px;
+}
+.button_export_data:hover {
+    background-color: #323e50;
+}
+
 
 .wrap_part {
     margin-top: 15px;
