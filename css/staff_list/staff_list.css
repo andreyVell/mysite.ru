@@ -37,6 +37,16 @@ table {
     text-align: center;
     color: #0F2232;
 }
+
+.table_cell.permanently {
+    font-family: 'Montserrat', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 40px;
+    text-align: center;
+    color: #FF4336;
+}
 .edit-btn {
     border-radius: 15px;
 }
@@ -64,5 +74,25 @@ table {
 }
 
 .button_add:hover {
+    background-color: #323e50;
+}
+
+.button_add.booking {
+    position: absolute;
+    bottom: 5%;
+    left: 38%;    
+    text-align: center;  
+    width: 24%;
+    z-index: 1;
+    border: 0;
+    border-radius: 15px;
+    color: white;
+    background-color: #485973;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 100;
+    font-size: 20px;
+    line-height: 43px;
+}
+.button_add.booking:hover {
     background-color: #323e50;
 }

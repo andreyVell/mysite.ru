@@ -58,6 +58,7 @@ function showNewBookingForm()
         disabeledDates.push({from: element[0], to: element[1]});
     });
     //для старта даты
+    $("#start_date").datepicker("destroy");
     $('#start_date').datepicker({
     dateFormat: 'yy-mm-dd',
     showButtonPanel: true,
@@ -97,6 +98,7 @@ function showNewBookingForm()
 //все даты позже сегодняяшнего дня + 1 год
 //все даты на которые есть брони для этого компа
 //все даты на которые есть брони для этого человека
+$("#end_date").datepicker("destroy");
 $('#end_date').datepicker({
     dateFormat: 'yy-mm-dd',
     showButtonPanel: true,

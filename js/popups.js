@@ -35,12 +35,12 @@ if (popupCloseIcon.length > 0)
     }
 }
 
-function popupOpen(currentPopup)
+function popupOpen(currentPopup, needToCloseOthers = true)
 {
     if (currentPopup && unlock)
     {        
         const popupActive = document.querySelector(".popup.open");
-        if (popupActive)
+        if (popupActive && needToCloseOthers)
         {
             popupClose(popupActive);
         }        

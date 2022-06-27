@@ -93,7 +93,7 @@ function getAccountBookingItems()
     }
 }
 
-function deleteAccountBookingItem(id, IsCurBooking)
+function deleteAccountBookingItem(bookingId, IsCurBooking)
 {
     //спрашиваем уверены ли в удалении
     if (confirm("Удалить?"))
@@ -104,7 +104,7 @@ function deleteAccountBookingItem(id, IsCurBooking)
         $.ajax({
             type: "POST",
             url: '/../../php/account/account_delete_booking.php',
-            data: {'id':id},
+            data: {'id':bookingId},
             success: function (result) {
                 //релоад таблицу  
                 alert(JSON.parse(result));                

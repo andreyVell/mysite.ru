@@ -36,6 +36,9 @@ function displayBooking(id)
     //удаляем кнопку редактирования
     if (document.getElementById('admin_edit_button'))
         document.querySelector(".main_part").removeChild(document.getElementById('admin_edit_button'));
+    //удаляем кнопку выгрузки
+    if (document.getElementById('button_export_data'))
+        document.querySelector(".main_part").removeChild(document.getElementById('button_export_data'));
     //сразу добавляем div в tBody
     let divMain=document.createElement('div');
     divMain.classList.add('scroll');

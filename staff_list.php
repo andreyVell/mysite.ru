@@ -11,6 +11,15 @@
     <link REL=stylesheet HREF="css/staff_list/add_popup.css" TYPE="text/css"> 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script src="https://kit.fontawesome.com/3097d0fe75.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+    <script>
+        $( function() {
+            $( "#datepicker" ).datepicker();
+        } );
+    </script>   
     <title>Список сотрудников</title>
 </head>
 <body>
@@ -59,26 +68,60 @@
             </div>
             <!--current user booking history -->
             <div id="popupCurUserBookingHistory" class="popup">
-                    <div class="popup_body">
-                        <div class="popup_content BookingHistory"> 
-                            <div>
-                                <div class="wrap_table BookingHistory">
-                                    <table>
-                                        <tr class="table_header">
-                                            <td class="btn-column"></td>
-                                            <td class="btn-column"></td>
-                                            <td >№</td>
-                                            <td >Расположение</td>
-                                            <td >Начало</td>
-                                            <td >Конец</td>
-                                        </tr>
-                                        <tbody id="account_booking_list"></tbody>                                
-                                    </table>
-                                </div>                        
-                            </div>
+                <div class="popup_body">
+                    <div class="popup_content BookingHistory"> 
+                        <div>
+                            <div class="wrap_table BookingHistory">
+                                <table>
+                                    <tr class="table_header">
+                                        <td class="btn-column"></td>
+                                        <td class="btn-column"></td>
+                                        <td >№</td>
+                                        <td >Расположение</td>
+                                        <td >Начало</td>
+                                        <td >Конец</td>
+                                    </tr>
+                                    <tbody id="staff_list_account_booking_list"></tbody>                                
+                                </table>
+                            </div> 
+                            <button class="button_add booking" id="add_new_booking_for_curr_user">Добавить бронь</button>                       
                         </div>
                     </div>
-                </div>        
+                </div>
+            </div>  
+            <!-- choosenUserChoosenBookingEDIT -->
+            <div id="popupChoosenUserChoosenBookingEdit" class="popup">
+                <div class="popup_body">
+                    <div class="popup_content date"> 
+                        <div class="popup_text"> 
+                            <form class="edit_form" method="post" enctype="multipart/form-data">    
+                                <p><label class="edit_hint">Дата начала: </label><input class="form-control" name="start_date_edit" id="start_date_edit"></p><br>                             
+                                <p id="end_date_edit_p"><label class="edit_hint">Дата конца: </label><input class="form-control" name="end_date_edit" id="end_date_edit"></p>                                   
+                                
+                                <button class="btn-save date" id="btn_to_save_edit_book_user">Сохранить</button>    
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>  
+            <!-- choosenUserAddNewBooking -->
+            <div id="popupchoosenUserAddNewBooking" class="popup">
+                <div class="popup_body">
+                    <div class="popup_content adddate"> 
+                        <div class="popup_text"> 
+                            <form class="edit_form" method="post" enctype="multipart/form-data">    
+                                <p><label class="edit_hint">Расположение:</label><select class="form-control" name="location_add_new_booking" id="location_add_new_booking"></select></p><br>
+                                <p><label class="edit_hint">Номер стола:</label><select class="form-control" name="wp_add_new_booking" id="wp_add_new_booking"></select></p><br>
+                                <p><label class="edit_hint">Перманентно:</label><input type="checkbox" class="form-control" name="is_permanently_add_new_booking" id="is_permanently_add_new_booking" ></p><br>                                   
+                                <p><label class="edit_hint">Дата начала: </label><input class="form-control" name="start_date_add" id="start_date_add"></p><br>                             
+                                <p id="end_date_add_p"><label class="edit_hint">Дата конца: </label><input class="form-control" name="end_date_add" id="end_date_add"></p>                                   
+                                           
+                                <button class="btn-save date" id="btn_add_new_booking_for_cur_user">Добавить</button>    
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>  
             <script src="js/staff_list/table_items.js"></script>
             <script type="text/javascript">getItems();</script>
             <?php

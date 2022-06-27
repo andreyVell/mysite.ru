@@ -13,7 +13,7 @@
         if ($startDate <= $curDate && $curDate<=$endDate)
         {
             $mysql->query("
-            UPDATE `booking_list` SET booking_list.end_time='$curDate' WHERE booking_list.id='$bookingId'"); 
+            UPDATE `booking_list` SET booking_list.end_time='$curDate', booking_list.IsPermanently='0' WHERE booking_list.id='$bookingId'"); 
         }
         else
         {
