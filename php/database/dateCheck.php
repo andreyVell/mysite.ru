@@ -21,7 +21,7 @@
     {   
         $curwpID=$value[0];
         $curDate=date('Y-m-d');
-        if ($value[1]<=$curDate && $value[2]>=$curDate)
+        if ($value[1]<=$curDate && $curDate<=$value[2])
         {
             //обновляем IsBusy у стола
             $mysql->query("UPDATE `workplaces` SET workplaces.IsBusy = '1' WHERE workplaces.id='$curwpID'");
@@ -30,4 +30,5 @@
                 $mysql->query("UPDATE `workplaces` SET workplaces.wpIsPermanently = '1' WHERE workplaces.id='$curwpID'");
         }
     }
+    $mysql->close();
 ?>

@@ -827,7 +827,7 @@ function addNewBookingForCurUser(userID)
     else
         endTime = $( "#end_date_add" ).datepicker( "getDate" );
     //выводим ошибки
-    if (!curWpId || !isPermanently || !startTime || !endTime)
+    if (!curWpId || !startTime || !endTime)
     {
         alert("Заполните все поля!");
         return;
